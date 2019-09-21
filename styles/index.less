@@ -1,0 +1,34 @@
+@import url('./palette.less');
+html,
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    color: @textColor
+}
+
+a.header-anchor {
+    font-size: .85em;
+    float: left;
+    margin-left: -.87em;
+    padding-right: .23em;
+    margin-top: .125em;
+    opacity: 0;
+}
+a {
+    text-decoration-line: none;
+    color: @textColor;
+    font-weight: 500;
+}
+.content__default {
+    padding: 3rem 2.5rem;
+    min-height: calc(100vh - 100px);
+    max-width: 740px;
+    margin: 0 auto;
+}
