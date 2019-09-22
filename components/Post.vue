@@ -26,8 +26,6 @@
             </article>
         </a>
         </div>
-
-        
     </div>
 </template>
 
@@ -42,18 +40,20 @@ export default {
     },
     created() {
         const result = this.$site.pages.filter(item => item.pid === 'post');
-        console.log(1111,  result);
         let arr = [];
         for(let i = 0; i < result.length; i++) {
-            const item = {
-                title: result[i].title,
-                link: result[i].regularPath,
-                abstract: '',
-                time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
-                tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
-                readCount: 100,
+            if(result[i].title) {
+                 const item = {
+                    title: result[i].title,
+                    link: result[i].regularPath,
+                    abstract: '',
+                    time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
+                    tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
+                    readCount: 100,
+                }
+                arr.push(item);
             }
-            arr.push(item);
+           
         };
         arr.sort((a,b) => {
             return a.time > b.time ? -1 : 1;
@@ -70,13 +70,15 @@ export default {
     margin 0px auto
     display block
     .post-block {
-        display block;
+        
         cursor pointer
         color: $textColor;
+        border-bottom: 1px solid $borderColor;
         .post-item-abstract {
             font-weight normal;
         }
         .post-item {
+            display block;
             width: 100%;
             color: $textColor;
             // padding: 15px 2px 20px 0;
