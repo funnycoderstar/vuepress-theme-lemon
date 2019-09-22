@@ -1,42 +1,51 @@
 <template>
-    <header class="nav-bar">
-            <router-link
-            :to="$localePath"
-            class="home-link"
-            >
-            <img
-                class="logo"
-                v-if="$site.themeConfig.logo"
-                :src="$withBase($site.themeConfig.logo)"
-                :alt="$siteTitle"
-            >
-            <span
-                ref="siteName"
-                class="site-name"
-                v-if="$siteTitle"
-                :class="{ 'can-hide': $site.themeConfig.logo }"
-            >{{ $siteTitle }}</span>
-            </router-link>
-            
-        <div
-            class="links"
-            :style="linksWrapMaxWidth ? {
-                'max-width': linksWrapMaxWidth + 'px'
-            } : {}"
-            >
-            <SearchBox v-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
-            <NavLinks class="can-hide"/>
-        </div>
-    </header>
+  <header class="navbar">
+    <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
+
+    <router-link
+      :to="$localePath"
+      class="home-link"
+    >
+      <img
+        class="logo"
+        v-if="$site.themeConfig.logo"
+        :src="$withBase($site.themeConfig.logo)"
+        :alt="$siteTitle"
+      >
+      <span
+        ref="siteName"
+        class="site-name"
+        v-if="$siteTitle"
+        :class="{ 'can-hide': $site.themeConfig.logo }"
+      >{{ $siteTitle }}</span>
+    </router-link>
+
+    <div
+      class="links"
+      :style="linksWrapMaxWidth ? {
+        'max-width': linksWrapMaxWidth + 'px'
+      } : {}"
+    >
+      <AlgoliaSearchBox
+        v-if="isAlgoliaSearch"
+        :options="algolia"
+      />
+      <SearchBox v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
+      <NavLinks class="can-hide"/>
+    </div>
+  </header>
 </template>
 
 <script>
-import SearchBox from '@SearchBox';
+import AlgoliaSearchBox from '@AlgoliaSearchBox'
+import SearchBox from '@SearchBox'
+import SidebarButton from '@theme/components/SidebarButton.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
 
 export default {
-    components: { SearchBox, NavLinks },
-    data () {
+  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox },
+
+  data () {
     return {
       linksWrapMaxWidth: null
     }
@@ -67,6 +76,7 @@ export default {
     }
   }
 }
+
 function css (el, property) {
   // NOTE: Known bug, will return 'auto' if style value is 'auto'
   const win = el.ownerDocument.defaultView
@@ -75,49 +85,51 @@ function css (el, property) {
 }
 </script>
 
-<style lang="less">
-@import url('../styles/index.less');
-// @navbar-vertical-padding = 0.7rem;
-// @navbar-horizontal-padding = 1.5rem;
-.nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    right: 0;
-    height: 3.6rem;
-    background-color: #fff;
-    box-sizing: border-box;
-    border-bottom: 1px solid #eaecef;
-    padding: .7rem 1.5rem;
-    line-height: 2.2rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03), 0 6px 6px rgba(0, 0, 0, 0.05);
-    transition: all 1s cubic-bezier(.25, .8, .25, 1);
-    .site-name {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #2c3e50;
-        position: relative;
-    }
-    .links {
-        padding-left: 1.5rem;
-        box-sizing: border-box;
-        background-color: white;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        position: absolute;
-        right: 0.7rem;
-        top: 0.5rem;
-        line-height: 2.2rem;
-        display: flex;
-    }
-}
-@media  (max-width: 700px) {
-    .can-hide {
-        display: none;
-    }
-}
+<style lang="stylus">
+$navbar-vertical-padding = 0.7rem
+$navbar-horizontal-padding = 1.5rem
 
+.navbar
+  padding $navbar-vertical-padding $navbar-horizontal-padding
+  line-height $navbarHeight - 1.4rem
+  z-index: 1000;
+  background: #fff;
+  a, span, img
+    display inline-block
+  .logo
+    height $navbarHeight - 1.4rem
+    min-width $navbarHeight - 1.4rem
+    margin-right 0.8rem
+    vertical-align top
+  .site-name
+    font-size 1.3rem
+    font-weight 600
+    color $textColor
+    position relative
+  .links
+    padding-left 1.5rem
+    box-sizing border-box
+    background-color white
+    white-space nowrap
+    font-size 0.9rem
+    position absolute
+    right $navbar-horizontal-padding
+    top $navbar-vertical-padding
+    display flex
+    .search-box
+      flex: 0 0 auto
+      vertical-align top
+
+@media (max-width: $MQMobile)
+  .navbar
+    padding-left 4rem
+    .can-hide
+      display none
+    .links
+      padding-left 1.5rem
+    .site-name
+      width calc(100vw - 9.4rem)
+      overflow hidden
+      white-space nowrap
+      text-overflow ellipsis
 </style>
-
-

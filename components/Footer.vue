@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="stylus">
 .theme-footer {
     text-align: center;
     height: 2rem;

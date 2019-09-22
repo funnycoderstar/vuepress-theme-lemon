@@ -8,23 +8,23 @@ module.exports = {
     themeConfig: {
         nav: [
             { text: '首页', link: '/' },
-        //     { 
-        //         text: '博文', 
-        //         items: [
-        //             {
-        //                 text: 'CSS',
-        //                 link: '/CSS/'
-        //             },
-        //             {
-        //                 text: 'JavaScript',
-        //                 link: '/JavaScript/'
-        //             },
-        //             {
-        //                 text: 'HTTP',
-        //                 link: '/HTTP/'
-        //             },
-        //         ]
-        // },
+            { 
+                text: '博文', 
+                items: [
+                    {
+                        text: 'CSS',
+                        link: '/CSS/'
+                    },
+                    {
+                        text: 'JavaScript',
+                        link: '/JavaScript/'
+                    },
+                    {
+                        text: 'HTTP',
+                        link: '/HTTP/'
+                    },
+                ]
+        },
             { text: '关于', link: '/About/' },
             { text: '标签', link: '/tags/' },
             { text: '归档', link: '/categories/' },
