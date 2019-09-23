@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="tag-cloud-tags">
-            <a :href="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item">{{tag.tagName}}({{tag.count}})</a>
+            <a :href="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item" :style="getTagStyles(tag.count) ">{{tag.tagName}}({{tag.count}})</a>
         </div>
     </div>
 </template>
@@ -19,28 +19,56 @@ export default {
     name: '',
     data() {
         return {
-            tagList: [
-                {
-                    tagName: 'HTTP',
-                    count: 11,
-                    link: '/tags/HTTP/'
-                },
-                {
-                    tagName: 'HTML',
-                    count: 10,
-                    link: '/tags/HTML/'
-                },
-                {
-                    tagName: 'CSS',
-                    count: 6,
-                    link: '/tags/CSS/'
-                },
-                {
-                    tagName: 'JS',
-                    count: 8,
-                    link: '/tags/JS/'
-                },
-            ]
+        }
+    },
+    computed: {
+        tagList() {
+            const result = this.$site.pages.filter(item => item.pid === 'post');
+            const obj = {};
+            for(let i = 0; i < result.length; i++) {
+                const current = result[i].frontmatter;
+                if(current.tags) {
+                    if(Array.isArray(current.tags)) {
+                        for(let j = 0; j < current.tags.length; j++) {
+                            if(obj[current.tags[j]]) {
+                            obj[current.tags[j]]++;
+                        } else {
+                            obj[current.tags[j]] = 1;
+                        }
+                        }
+                    } else {
+                        if(obj[current.tags]) {
+                            obj[current.tags]++;
+                        } else {
+                            obj[current.tags] = 1;
+                        }
+                    }
+                }
+            }
+            let arr = [];
+            for (let [key, value] of Object.entries(obj)) {
+                const item = {
+                    tagName: key,
+                    count: value,
+                    link: `/tag/${key}/`
+                }
+                arr.push(item);
+            }
+            return arr;
+        }
+    },
+    methods: {
+        getTagStyles(count) {
+            const value = Number(count);
+            let color = '#999';
+            if(value > 1 && value <= 2 ) {
+                color = '#666'
+            }
+            if(value > 1 && value <= 5) {
+                color = '#333'
+            }
+            return { fontSize: 1 + value / 5 + 'rem', color, borderColor: color};
+            
         }
     },
 }
@@ -66,19 +94,6 @@ export default {
                 
             }
             
-            .tag-item:nth-of-type(2n+1) {
-               color: $textColor;
-                border-bottom: 1px solid $textColor;
-            }
-            .tag-item:nth-of-type(3n+1) {
-                font-size: 1.5rem;
-                color: #666;
-                border-bottom: 1px solid #666;
-            }
-            .tag-item:hover {
-                color: $accentColor;
-                border-bottom: 1px solid $accentColor;
-            }
         }
     }
 </style>
