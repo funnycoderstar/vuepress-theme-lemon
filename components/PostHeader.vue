@@ -56,6 +56,7 @@ export default {
                 font-size: 0.8rem;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 a {
                     color #999
                 }
