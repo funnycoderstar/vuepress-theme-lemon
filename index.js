@@ -1,4 +1,5 @@
 const path = require('path');
+const removeMd = require('remove-markdown')
 
 module.exports = (themeConfig, ctx) =>  {
     themeConfig = Object.assign(
@@ -70,5 +71,23 @@ module.exports = (themeConfig, ctx) =>  {
           },
         plugins,
     }
+    /**
+   * Generate summary.
+   */
+//   if (themeConfig.summary) {
+    config.extendPageData = function (pageCtx) {
+      const strippedContent = pageCtx._strippedContent
+      if (!strippedContent) {
+        return
+      }
+      pageCtx.summary = removeMd(
+        strippedContent
+          .trim()
+          .replace(/^#+\s+(.*)/, '')
+          .slice(0, themeConfig.summaryLength)
+      ) + ' ...'
+    }
+//   }
+
     return config;
 }
