@@ -58,7 +58,7 @@ export default {
                         if((Array.isArray(result[i].frontmatter.tags) && result[i].frontmatter.tags.includes(this.currentTag)) || (!Array.isArray(result[i].frontmatter.tags) && result[i].frontmatter.tags === this.currentTag)) {
                             const item = {
                                 title: result[i].title,
-                                link: result[i].regularPath,
+                                link: result[i].path,
                                 updateTime: dayjs(result[i].frontmatter.date).format("YYYY.MM.DD HH:mm"),
                                 time: dayjs(result[i].frontmatter.date).format("MM-DD"),
                             };

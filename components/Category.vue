@@ -64,7 +64,7 @@ export default {
             if(result[i].title) {
                  const item = {
                     title: result[i].title,
-                    link: result[i].regularPath,
+                    link: result[i].path,
                     updateTime: dayjs(result[i].frontmatter.date).format("YYYY.MM.DD HH:mm"),
                     time: dayjs(result[i].frontmatter.date).format("MM-DD"),
                     year: dayjs(result[i].frontmatter.date).year(),

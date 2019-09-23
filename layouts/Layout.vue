@@ -67,7 +67,7 @@ import TagsPost from '@theme/components/TagsPost.vue'
 import PostHeader from '@theme/components/PostHeader.vue'
 import { resolveSidebarItems } from '../util'
 import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components'
-
+import Vue from 'vue'
 export default {
   components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost, PostHeader},
 

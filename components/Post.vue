@@ -41,7 +41,7 @@ export default {
                 if(result[i].title) {
                     const item = {
                         title: result[i].title,
-                        link: result[i].regularPath,
+                        link: result[i].path,
                         abstract: result[i].summary,
                         time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
                         tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
@@ -54,6 +54,7 @@ export default {
             arr.sort((a,b) => {
                 return a.time > b.time ? -1 : 1;
             })
+           
             return arr;
         }
     },
