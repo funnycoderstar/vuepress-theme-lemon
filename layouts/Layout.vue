@@ -31,11 +31,10 @@
     <Home v-if="$page.frontmatter.home"/>
     <Post v-if="shouldShowPost"/>
     <Category v-if="shouldShowCategory"/>
-
+    <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
+    <PostHeader v-if="shouldShowPostContent"/>
     <Tags v-if="shouldShowTags"/>
-
     <Page
-      v-else
       :sidebar-items="sidebarItems"
     >
       <slot
@@ -47,6 +46,10 @@
         slot="bottom"
       />
     </Page>
+    <div class="pagination-wrap">
+        <component  v-if="shouldShowPost" :is="paginationComponent"></component>
+    </div>
+    
     <Footer></Footer>
   </div>
 </template>
@@ -60,14 +63,18 @@ import Category from '@theme/components/Category.vue'
 import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
 import Post from '@theme/components/Post.vue'
+import TagsPost from '@theme/components/TagsPost.vue'
+import PostHeader from '@theme/components/PostHeader.vue'
 import { resolveSidebarItems } from '../util'
+import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post},
+  components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost, PostHeader},
 
   data () {
     return {
-      isSidebarOpen: false
+      isSidebarOpen: false,
+      paginationComponent: null
     }
   },
 
@@ -136,11 +143,23 @@ export default {
       const { frontmatter } = this.$page
       return (
         frontmatter.title
-        && frontmatter.title === 'Post'
+        && /post/gi.test(frontmatter.title)
       )
-    }
+    },
+    shouldShowTagPost() {
+      const { regularPath } = this.$page
+      return (
+        regularPath
+        && regularPath.slice(1, 4) === 'tag'
+      )
+    },
+    shouldShowPostContent() {
+      return this.$page.pid && this.$page.pid === 'post'
+    },
   },
-
+  created() {
+    this.paginationComponent = this.getPaginationComponent()
+  },
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -148,6 +167,18 @@ export default {
   },
 
   methods: {
+    getPaginationComponent() {
+        const n = THEME_BLOG_PAGINATION_COMPONENT;
+        if (n === 'Pagination') {
+          return Pagination
+        }
+
+        if (n === 'SimplePagination') {
+          return SimplePagination
+        }
+
+        return Vue.component(n) || Pagination
+      },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
       this.$emit('toggle-sidebar', this.isSidebarOpen)

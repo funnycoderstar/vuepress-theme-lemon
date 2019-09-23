@@ -72,6 +72,11 @@ module.exports = (themeConfig, ctx) =>  {
             }
           },
         plugins,
+        define: {
+          THEME_BLOG_PAGINATION_COMPONENT: themeConfig.paginationComponent
+            ? themeConfig.paginationComponent
+            : 'Pagination'
+        }
     }
     /**
    * Generate summary.
