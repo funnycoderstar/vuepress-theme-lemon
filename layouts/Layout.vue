@@ -121,15 +121,15 @@ export default {
     shouldShowCategory() {
       const { frontmatter } = this.$page
       return (
-        frontmatter.type
-        && frontmatter.type === 'category'
+        frontmatter.layoutType
+        && frontmatter.layoutType === 'category'
       )
     },
     shouldShowTags() {
       const { frontmatter } = this.$page
       return (
-        frontmatter.type
-        && frontmatter.type === 'tags'
+        frontmatter.layoutType
+        && frontmatter.layoutType === 'tags'
       )
     },
     shouldShowPost() {

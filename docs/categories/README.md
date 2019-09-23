@@ -1,3 +1,3 @@
 ---
-type: 'category'
+layoutType: 'category'
 ---

@@ -8,26 +8,26 @@ module.exports = {
     themeConfig: {
         nav: [
             { text: '首页', link: '/' },
+            { text: '归档', link: '/categories/' },
+            { text: '标签', link: '/tags/' },
+            { text: '关于', link: '/About/' },
             { 
-                text: '博文', 
+                text: '更多', 
                 items: [
                     {
-                        text: 'CSS',
-                        link: '/CSS/'
+                        text: '算法',
+                        link: 'https://wangyaxing.cn/leetcode/'
                     },
                     {
-                        text: 'JavaScript',
-                        link: '/JavaScript/'
+                        text: '前端总结',
+                        link: 'https://wangyaxing.cn/summary/'
                     },
                     {
-                        text: 'HTTP',
-                        link: '/HTTP/'
+                        text: 'Github',
+                        link: 'https://github.com/funnycoderstar'
                     },
                 ]
         },
-            { text: '关于', link: '/About/' },
-            { text: '标签', link: '/tags/' },
-            { text: '归档', link: '/categories/' },
         ],
         // sidebar: {
         //     '/_posts/': [
