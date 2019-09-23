@@ -29,18 +29,18 @@ module.exports = {
             { text: '标签', link: '/tags/' },
             { text: '归档', link: '/categories/' },
         ],
-        sidebar: {
-            '/_posts/': [
-                {
-                    title: '基础',
-                    collapsable: true,
-                    children:[
-                        'basic/js入门1',
-                        'basic/js入门2',
-                      ]
-                }
-            ],
+        // sidebar: {
+        //     '/_posts/': [
+        //         {
+        //             title: '基础',
+        //             collapsable: true,
+        //             children:[
+        //                 'basic/js入门1',
+        //                 'basic/js入门2',
+        //               ]
+        //         }
+        //     ],
 
-        }
+        // }
     },
 }

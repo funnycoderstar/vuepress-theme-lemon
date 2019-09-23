@@ -46,7 +46,7 @@ export default {
                  const item = {
                     title: result[i].title,
                     link: result[i].regularPath,
-                    abstract: '',
+                    abstract: result[i].summary,
                     time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
                     tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
                     readCount: 100,
