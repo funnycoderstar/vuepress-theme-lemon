@@ -110,7 +110,6 @@ export default {
   max-width: 740px;
   margin: 0 auto;
   padding: $navbarHeight 0;
-  padding-top: 100px;
   position: relative;
   min-height: calc(100vw - 38rem);
 

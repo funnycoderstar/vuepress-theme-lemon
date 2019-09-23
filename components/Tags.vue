@@ -67,7 +67,10 @@ export default {
             if(value > 1 && value <= 5) {
                 color = '#333'
             }
-            return { fontSize: 1 + value / 5 + 'rem', color, borderColor: color};
+            if(value > 5) {
+                color = '#000'
+            }
+            return { fontSize: 1 + value / 10 + 'rem', color, borderColor: color};
             
         }
     },
@@ -85,6 +88,7 @@ export default {
         .tag-cloud-tags {
             margin-top: 20px;
             .tag-item {
+                display inline-block
                 margin-right: 2rem;
                 font-size: 2rem;
                 padding: 1rem 0;
@@ -92,6 +96,10 @@ export default {
                 color: #b1b1b1;
                 border-bottom: 1px solid #b1b1b1;
                 
+            }
+            .tag-item:hover {
+                color: $accentColor !important;
+                border-color: $accentColor !important;
             }
             
         }

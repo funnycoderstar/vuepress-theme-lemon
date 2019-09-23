@@ -10,10 +10,10 @@
                     {{article.abstract}}
                 </div>
                 <div class="post-item-meta">
-                    <span class="meta-tag meta" v-for="(tag, tagIndex) in article.tags" :key="tagIndex">
+                    <a class="meta-tag meta" v-for="(tag, tagIndex) in article.tags" :key="tagIndex" :href="`/tag/${tag}`">
                         <i class="iconfont icon2"></i>
                         {{tag}}
-                    </span>
+                    </a>
                     <span class="meta-read meta">
                         <i class="iconfont iconai-eye"></i>
                         {{article.readCount}}
@@ -33,32 +33,29 @@
 import dayjs  from 'dayjs';
 export default {
     name: 'Post',
-    data() {
-        return {
-            articlesList: [],
-        }
-    },
-    created() {
-        const result = this.$site.pages.filter(item => item.pid === 'post');
-        let arr = [];
-        for(let i = 0; i < result.length; i++) {
-            if(result[i].title) {
-                 const item = {
-                    title: result[i].title,
-                    link: result[i].regularPath,
-                    abstract: result[i].summary,
-                    time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
-                    tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
-                    readCount: 100,
+    computed: {
+        articlesList() {
+            const result = this.$pagination.pages.filter(item => item.pid === 'post');
+            let arr = [];
+            for(let i = 0; i < result.length; i++) {
+                if(result[i].title) {
+                    const item = {
+                        title: result[i].title,
+                        link: result[i].regularPath,
+                        abstract: result[i].summary,
+                        time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
+                        tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
+                        readCount: 100,
+                    }
+                    arr.push(item);
                 }
-                arr.push(item);
-            }
-           
-        };
-        arr.sort((a,b) => {
-            return a.time > b.time ? -1 : 1;
-        })
-        this.articlesList = arr;
+            
+            };
+            arr.sort((a,b) => {
+                return a.time > b.time ? -1 : 1;
+            })
+            return arr;
+        }
     },
 }
 </script>
@@ -94,6 +91,9 @@ export default {
                 font-size: 0.8rem;
                 display: flex;
                 align-items: center;
+                a {
+                    color #999
+                }
                  .meta {
                     margin-right: 10px;
                     display: flex;
@@ -106,6 +106,9 @@ export default {
                     i {
                         font-size: 1rem;
                     }
+                }
+                .meta-tag:hover {
+                    color: $accentColor
                 }
             }
            
