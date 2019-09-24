@@ -9,12 +9,13 @@
             </div>
         </div>
         <div class="tag-cloud-tags">
-            <a :href="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item" :style="getTagStyles(tag.count) ">{{tag.tagName}}({{tag.count}})</a>
+            <a :href="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item" :style="getTagStyles(tag.count, tag.color) ">{{tag.tagName}}({{tag.count}})</a>
         </div>
     </div>
 </template>
 
 <script>
+import randomColor from 'randomcolor';
 export default {
     name: '',
     data() {
@@ -50,6 +51,7 @@ export default {
                 const item = {
                     tagName: key,
                     count: value,
+                    color: randomColor({ seed: key, luminosity: 'dark'}),
                     link: `/tag/${key}/`
                 }
                 arr.push(item);
@@ -58,18 +60,18 @@ export default {
         }
     },
     methods: {
-        getTagStyles(count) {
+        getTagStyles(count, color) {
             const value = Number(count);
-            let color = '#999';
-            if(value > 1 && value <= 2 ) {
-                color = '#666'
-            }
-            if(value > 1 && value <= 5) {
-                color = '#333'
-            }
-            if(value > 5) {
-                color = '#000'
-            }
+            // let color = '#999';
+            // if(value > 1 && value <= 2 ) {
+            //     color = '#666'
+            // }
+            // if(value > 1 && value <= 5) {
+            //     color = '#333'
+            // }
+            // if(value > 5) {
+            //     color = '#000'
+            // }
             return { fontSize: 1 + value / 10 + 'rem', color, borderColor: color};
             
         }
