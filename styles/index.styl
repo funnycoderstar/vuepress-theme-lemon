@@ -6,7 +6,9 @@
 @require './toc'
 @import '//at.alicdn.com/t/font_1429350_kuwk0gh17sm.css'
 
-
+$navIndex = 1000;
+$sideBarIndex = 999;
+$postsCollapseIndex = 998;
 html, body
   padding 0
   margin 0
@@ -24,7 +26,7 @@ body
 
 .navbar
   position fixed
-  z-index 20
+  z-index $navIndex 
   top 0
   left 0
   right 0
@@ -47,7 +49,7 @@ body
   background-color #fff
   width $sidebarWidth
   position fixed
-  z-index 10
+  z-index $sideBarIndex
   margin 0
   top $navbarHeight
   left 0
@@ -59,7 +61,7 @@ body
 {$contentClass}:not(.custom)
   @extend $wrapper
   > *:first-child
-    margin-top $navbarHeight
+    // margin-top $navbarHeight
 
   a:hover
     text-decoration underline
@@ -192,8 +194,9 @@ th, td
       top 0
 
 .pagination-wrap {
-  max-width 960px;
+  max-width $contentWidth;
   margin 0 auto;
+  text-align center
 }
 @media (min-width: ($MQMobile + 1px))
   .theme-container.no-sidebar
