@@ -78,9 +78,9 @@ export default {
 
 <style lang="stylus">
 .category {
-  max-width: 740px;
+  max-width: $contentWidth;
   margin: 0 auto;
-  padding: $navbarHeight 0;
+  padding: $navbarHeight;
   padding-top: 100px;
   position: relative;
   min-height: calc(100vw - 38rem);
@@ -119,7 +119,7 @@ export default {
 
 .posts-collapse {
   position: relative;
-  z-index: 999;
+  z-index: $postsCollapseIndex;
 
   .collection-title {
     opacity: 1;

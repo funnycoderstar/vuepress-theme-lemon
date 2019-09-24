@@ -5,10 +5,6 @@
       <span class="archive-page-counter">好! 目前共计 {{categoryListCount}} 篇文章。 继续努力。</span>
       <div v-for="(item, index) in categoryList" :key="index">
         <div class="collection-title">
-          <h1 v-if="false">
-            javascript
-            <small>标签</small>
-          </h1>
           <h1>
               {{item.year}}
           </h1>
@@ -107,7 +103,7 @@ export default {
 
 <style lang="stylus">
 .category {
-  max-width: 740px;
+  max-width: $contentWidth
   margin: 0 auto;
   padding: $navbarHeight 0;
   position: relative;
@@ -147,7 +143,7 @@ export default {
 
 .posts-collapse {
   position: relative;
-  z-index: 999;
+  z-index: $postsCollapseIndex;
 
   .collection-title {
     opacity: 1;

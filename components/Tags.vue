@@ -79,7 +79,7 @@ export default {
 
 <style lang="stylus">
     .tags {
-        max-width: 740px;
+        max-width: $contentWidth;
         margin: 0 auto;
         padding $navbarHeight 0;
         position: relative;
