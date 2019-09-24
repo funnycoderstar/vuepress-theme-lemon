@@ -64,14 +64,12 @@ export default {
 <style lang="stylus">
 .post-container {
     padding $navbarHeight 2rem 0
-    max-width 960px
+    max-width $contentWidth
     margin 0px auto
     display block
     .post-block {
-        
         cursor pointer
         color: $textColor;
-        border-bottom: 1px solid $borderColor;
         .post-item-abstract {
             font-weight normal;
         }
@@ -79,15 +77,11 @@ export default {
             display block;
             width: 100%;
             color: $textColor;
-            // padding: 15px 2px 20px 0;
             padding-bottom: 20px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid $borderColor;
             word-wrap: break-word;
-            .post-item-title {
-
-            }
             .post-item-meta {
-                color:  #999;
+                color: #999;
                 margin-top: 15px;
                 font-size: 0.8rem;
                 display: flex;

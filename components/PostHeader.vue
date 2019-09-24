@@ -47,9 +47,10 @@ export default {
 <style lang="stylus">
     .post-content-header {
          padding $navbarHeight 2rem 0
-         max-width 740px
+         max-width $contentWidth
          margin 0px auto
          text-align center
+         padding-left: $sidebarWidth;
          .post-item-meta {
                 color:  #999;
                 margin-top: 15px;
@@ -78,4 +79,10 @@ export default {
                 }
             }
     }
+  
+@media (max-width: $MQMobile)
+  .post-content-header {
+      padding-left: 0;
+  }
+    
 </style>
