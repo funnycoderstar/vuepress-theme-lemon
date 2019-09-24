@@ -66,7 +66,6 @@ function resolvePageLink (
 
   // Page link config will overwrite global theme link config if defined
   const link = isNil(pageLinkConfig) ? themeLinkConfig : pageLinkConfig
-
   if (link === false) {
     return
   } else if (isString(link)) {
@@ -81,7 +80,7 @@ function find (page, items, offset) {
   flatten(items, res)
   for (let i = 0; i < res.length; i++) {
     const cur = res[i]
-    if (cur.type === 'page' && cur.path === decodeURIComponent(page.path)) {
+    if (cur.type === 'page' && decodeURIComponent(cur.path) === decodeURIComponent(page.path)) {
       return res[i + offset]
     }
   }
@@ -104,15 +103,15 @@ function flatten (items, res) {
   @extend $wrapper;
   padding-top: 1rem;
   padding-bottom: 0;
-
   .inner {
     min-height: 2rem;
     margin-top: 0;
     border-top: 1px solid $borderColor;
     padding-top: 1rem;
     overflow: auto; // clear float
+    display: flex;
+    justify-content: space-between
   }
-
   .next {
     float: right;
   }
