@@ -16,7 +16,7 @@
     ></div>
 
     <Sidebar
-      :items="sidebarItems"
+      :items="postSideBarItems"
       @toggle-sidebar="toggleSidebar"
     >
       <slot
@@ -68,6 +68,7 @@ import PostHeader from '@theme/components/PostHeader.vue'
 import { resolveSidebarItems } from '../util'
 import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components'
 import Vue from 'vue'
+import dayjs  from 'dayjs';
 export default {
   components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost, PostHeader},
 
@@ -106,14 +107,51 @@ export default {
     },
 
     sidebarItems () {
-      return resolveSidebarItems(
-        this.$page,
-        this.$page.regularPath,
-        this.$site,
-        this.$localePath
-      )
+        const index = this.allPostList.findIndex(item => item.key === this.$page.key);
+        const pre = this.allPostList[index - 1];
+        const next = this.allPostList[index + 1];
+        if(index > -1) {
+            if(index === 0) {
+                return [
+                    this.$page,
+                    next,
+                ]
+            }
+            if(index === this.allPostList.length - 1) {
+                return [
+                    pre,
+                    this.$page,
+                ]
+            }
+            return [
+                pre,
+                this.$page,
+                next,
+            ]
+        } else {
+            return [];
+        }
+    //   return resolveSidebarItems(
+    //     this.$page,
+    //     this.$page.regularPath,
+    //     this.$site,
+    //     this.$localePath
+    //   )
     },
-
+    postSideBarItems() {
+       return this.shouldShowPostContent ? [this.$page] : [];
+    },
+    allPostList() {
+            const result = this.$site.pages.filter(item => item.pid === 'post');
+            let arr = result;
+            arr.sort((a,b) => {
+                return a.frontmatter.date > b.frontmatter.date ? -1 : 1;
+            })
+            for(let i = 0; i < arr.length; i++) {
+                arr[i].type = 'page';
+            }
+            return arr;
+        },
     pageClasses () {
       const userPageClass = this.$page.frontmatter.pageClass
       return [
