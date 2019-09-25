@@ -1,30 +1,33 @@
 <template>
     <div class="post-container">
         <div class="post-block">
-            <a  v-for="(article, index) in articlesList" :key="index" class="post-item" :href="article.link">
-            <article >
-                <h3 class="post-item-title">
-                    {{article.title}}
-                </h3>
-                <div class="post-item-abstract">
-                    {{article.abstract}}
-                </div>
-                <div class="post-item-meta">
-                    <a class="meta-tag meta" v-for="(tag, tagIndex) in article.tags" :key="tagIndex" :href="`/tag/${tag}`">
-                        <i class="iconfont icon2"></i>
-                        {{tag}}
-                    </a>
-                    <span class="meta-read meta">
-                        <i class="iconfont iconai-eye"></i>
-                        {{article.readCount}}
-                    </span>
-                    <span class="meta-time meta">
-                        <i class="iconfont iconshijian"></i>
-                        {{article.time}}
-                    </span>
-                </div>
-            </article>
-        </a>
+            <div v-for="(article, index) in articlesList" :key="index" class="post-item" @click="handlePage(article.link)" >
+                <article >
+                    <h3 class="post-item-title">
+                        {{article.title}}
+                    </h3>
+                    <div class="post-item-abstract">
+                        {{article.abstract}}
+                    </div>
+                    <div class="post-item-meta">
+                        <span class="meta-tag meta" v-for="(tag, tagIndex) in article.tags" :key="tagIndex" @click.stop="handleTagPage(tag)">
+                            <i class="iconfont icon2"></i>
+                            {{tag}}
+                        </span>
+                        <span class="meta-read meta">
+                            <i class="iconfont iconai-eye"></i>
+                            {{article.readCount}}
+                        </span>
+                        <span class="meta-time meta">
+                            <i class="iconfont iconshijian"></i>
+                            {{article.time}}
+                        </span>
+                    </div>
+                </article>
+            </div>
+            <!-- <router-link  >
+                
+            </router-link> -->
         </div>
     </div>
 </template>
@@ -58,6 +61,15 @@ export default {
             return arr;
         }
     },
+    methods: {
+        handlePage(path) {
+            this.$router.push(path)
+        },
+        handleTagPage(tag) {
+            const path = `/tag/${tag}`;
+            this.$router.push(path)
+        }
+    }
 }
 </script>
 
