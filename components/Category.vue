@@ -15,13 +15,13 @@
             style="opacity: 1; display: block; transform: translateY(0px);"
           >
             <h2 class="post-title">
-              <a
+              <router-link
                 class="post-title-link"
-                :href="article.link"
+                :to="article.link"
                 itemprop="url"
               >
                 <span itemprop="name">{{article.title}}</span>
-              </a>
+              </router-link>
             </h2>
             <div class="post-meta">
               <time

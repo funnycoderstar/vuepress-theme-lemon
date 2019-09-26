@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="tag-cloud-tags">
-            <a :href="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item" :style="getTagStyles(tag.count, tag.color) ">{{tag.tagName}}({{tag.count}})</a>
+            <router-link :to="tag.link" v-for="(tag, index) in tagList" :key="index" class="tag-item" :style="getTagStyles(tag.count, tag.color) ">{{tag.tagName}}({{tag.count}})</router-link>
         </div>
     </div>
 </template>

@@ -5,10 +5,10 @@
         </h1>
         <div class="post-content">
             <div class="post-item-meta">
-                <a class="meta-tag meta" v-for="(tag, tagIndex) in tags" :key="tagIndex" :href="`/tag/${tag}`">
+                <router-link class="meta-tag meta" v-for="(tag, tagIndex) in tags" :key="tagIndex" :to="`/tag/${tag}`">
                     <i class="iconfont icon2"></i>
                     {{tag}}
-                </a>
+                </router-link>
                 <span class="meta-read meta" v-if="$page.frontmatter.readCount">
                     <i class="iconfont iconai-eye"></i>
                     {{$page.frontmatter.readCount}}
