@@ -84,12 +84,16 @@ module.exports = (themeConfig, ctx) =>  {
    */
   if (themeConfig.summary) {
     config.extendPageData = function (pageCtx) {
-        // console.log(666, pageCtx._content);
       const strippedContent = pageCtx._strippedContent
       if (!strippedContent) {
         return
       }
-    //   pageCtx.img = pageCtx._content
+      // 匹配第一个img链接
+      const firstImgReg = /!\[.*\]\((.+)\)/; 
+      const firstImgLink = pageCtx._content.match(firstImgReg);
+      if(firstImgLink) {
+        pageCtx.thumbnailLink = firstImgLink[1];
+      }
       pageCtx.summary = removeMd(
         strippedContent
           .trim()
