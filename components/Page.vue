@@ -3,7 +3,7 @@
     <slot name="top" />
 
     <Content class="theme-lemon-content" />
-    <PageEdit />
+    <!-- <PageEdit /> -->
 
     <PageNav v-bind="{ sidebarItems }" />
 
