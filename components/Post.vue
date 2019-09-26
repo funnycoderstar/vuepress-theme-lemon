@@ -14,9 +14,8 @@
                             <i class="iconfont icon2"></i>
                             {{tag}}
                         </span>
-                        <span class="meta-read meta">
-                            <i class="iconfont iconai-eye"></i>
-                            {{article.readCount}}
+                        <span id="busuanzi_container_page_pv" class="meta-read meta">
+                            <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                         <span class="meta-time meta">
                             <i class="iconfont iconshijian"></i>
@@ -25,7 +24,7 @@
                     </div>
                 </article>
                 <div v-if="article.thumbnailLink" class="thumbnail-img-wrap">
-                    <img :src="article.thumbnailLink" alt="" @error="errorLoagImg(index)" @load="loadImg(index)">
+                    <img :src="article.thumbnailLink" alt="">
                 </div>
             </div>
         </div>
@@ -72,12 +71,6 @@ export default {
             const path = `/tag/${tag}`;
             this.$router.push(path)
         },
-        errorLoagImg(value) {
-            console.log(666, value);
-        },
-        loadImg(value) {
-            console.log(222, value);
-        }
     }
 }
 </script>

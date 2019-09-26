@@ -9,9 +9,8 @@
                     <i class="iconfont icon2"></i>
                     {{tag}}
                 </router-link>
-                <span class="meta-read meta" v-if="$page.frontmatter.readCount">
-                    <i class="iconfont iconai-eye"></i>
-                    {{$page.frontmatter.readCount}}
+                <span id="busuanzi_container_page_pv" class="meta-read meta">
+                    <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
                 </span>
                 <span class="meta-time meta">
                     <i class="iconfont iconshijian"></i>
