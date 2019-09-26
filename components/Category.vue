@@ -58,12 +58,13 @@ export default {
         let arr = [];
         for (let i = 0; i < result.length; i++) {
             if(result[i].title) {
+                const updataTime = result[i].frontmatter.date ? result[i].frontmatter.date: result[i].lastUpdated;
                  const item = {
                     title: result[i].title,
                     link: result[i].path,
-                    updateTime: dayjs(result[i].frontmatter.date).format("YYYY.MM.DD HH:mm"),
-                    time: dayjs(result[i].frontmatter.date).format("MM-DD"),
-                    year: dayjs(result[i].frontmatter.date).year(),
+                    updateTime: dayjs(updataTime).format("YYYY.MM.DD HH:mm"),
+                    time: dayjs(updataTime).format("MM-DD"),
+                    year: dayjs(updataTime).year(),
                 };
                 arr.push(item);
             }

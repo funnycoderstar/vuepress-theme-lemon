@@ -17,8 +17,8 @@ module.exports = (themeConfig, ctx) =>  {
             dirname: '_posts',
             path: '/',
             // layout: 'IndexPost', defaults to `Layout.vue`
-            itemLayout: 'Post',
-            itemPermalink: '/:year/:month/:day/:slug',
+            // itemLayout: 'Post',
+            // itemPermalink: '/:year/:month/:day/:slug',
             pagination: {
               lengthPerPage: 5,
             },
@@ -46,6 +46,7 @@ module.exports = (themeConfig, ctx) =>  {
         '@vuepress/back-to-top',
         '@vuepress/active-header-links',
         '@vuepress/plugin-nprogress',
+        // '@vuepress/pwa',
         ['@vuepress/medium-zoom', true],
         ['@vuepress/search', {
             searchMaxSuggestions: 10
@@ -81,12 +82,14 @@ module.exports = (themeConfig, ctx) =>  {
     /**
    * Generate summary.
    */
-//   if (themeConfig.summary) {
+  if (themeConfig.summary) {
     config.extendPageData = function (pageCtx) {
+        // console.log(666, pageCtx._content);
       const strippedContent = pageCtx._strippedContent
       if (!strippedContent) {
         return
       }
+    //   pageCtx.img = pageCtx._content
       pageCtx.summary = removeMd(
         strippedContent
           .trim()
@@ -94,7 +97,7 @@ module.exports = (themeConfig, ctx) =>  {
           .slice(0, themeConfig.summaryLength)
       ) + ' ...'
     }
-//   }
+  }
 
     return config;
 }

@@ -38,7 +38,8 @@ export default {
             return currentTags ? (Array.isArray(currentTags) ? currentTags: [currentTags]) : [];
         },
         time() {
-            return dayjs(this.$page.frontmatter.date).format('YYYY.MM.DD HH:mm');
+            const updataTime = this.$page.frontmatter.date ? this.$page.frontmatter.date: this.$page.lastUpdated;
+            return dayjs(updataTime).format('YYYY.MM.DD HH:mm');
         }
      },
 }

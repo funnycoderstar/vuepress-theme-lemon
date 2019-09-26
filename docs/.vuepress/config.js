@@ -6,6 +6,8 @@ module.exports = {
     ],
     theme: require.resolve('../../'),
     themeConfig: {
+        lastUpdated: 'Last Updated',
+        summary: true,
         nav: [
             { text: '首页', link: '/' },
             { text: '归档', link: '/categories/' },

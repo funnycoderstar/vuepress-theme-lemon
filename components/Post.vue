@@ -42,11 +42,12 @@ export default {
             let arr = [];
             for(let i = 0; i < result.length; i++) {
                 if(result[i].title) {
+                    const updataTime = result[i].frontmatter.date ? result[i].frontmatter.date: result[i].lastUpdated;
                     const item = {
                         title: result[i].title,
-                        link: result[i].path,
+                        link: result[i].regularPath,
                         abstract: result[i].summary,
-                        time: dayjs(result[i].frontmatter.date).format('YYYY.MM.DD HH:mm'),
+                        time: dayjs(updataTime).format('YYYY.MM.DD HH:mm'),
                         tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
                         readCount: 100,
                     }
@@ -63,6 +64,7 @@ export default {
     },
     methods: {
         handlePage(path) {
+            console.log(777, path);
             this.$router.push(path)
         },
         handleTagPage(tag) {
