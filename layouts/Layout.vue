@@ -32,7 +32,6 @@
     <Post v-if="shouldShowPost"/>
     <Category v-if="shouldShowCategory"/>
     <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
-    <PostHeader v-if="shouldShowPostContent"/>
     <Tags v-if="shouldShowTags"/>
     <Page
       :sidebar-items="sidebarItems"
@@ -64,13 +63,12 @@ import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
 import Post from '@theme/components/Post.vue'
 import TagsPost from '@theme/components/TagsPost.vue'
-import PostHeader from '@theme/components/PostHeader.vue'
 import { resolveSidebarItems } from '../util'
 import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components'
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
-  components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost, PostHeader},
+  components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost},
 
   data () {
     return {

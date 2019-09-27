@@ -24,6 +24,7 @@
 
 <script>
 import dayjs  from 'dayjs';
+
 export default {
     data() {
         return {
@@ -50,7 +51,6 @@ export default {
          max-width $contentWidth
          margin 0px auto
          text-align center
-         padding-left: $sidebarWidth;
          .post-item-meta {
                 color:  #999;
                 margin-top: 15px;
