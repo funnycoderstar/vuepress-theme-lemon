@@ -17,9 +17,9 @@ module.exports = {
         summary: true,
         nav: [
             { text: '首页', link: '/' },
-            { text: '归档', link: '/categories/' },
+            { text: '归档', link: '/archives/' },
             { text: '标签', link: '/tags/' },
-            { text: '关于', link: '/About/' },
+            { text: '关于', link: '/about/' },
             { 
                 text: '更多', 
                 items: [
