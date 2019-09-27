@@ -1,11 +1,11 @@
 <template>
   <main class="page">
     <slot name="top" />
-      <PostHeader/>
+      <PostHeader v-if="shouldShowPostContent"/>
     <Content class="theme-lemon-content" />
 
     <PageNav v-bind="{ sidebarItems }" />
-    <MyVssue />
+    <MyVssue  v-if="shouldShowPostContent"/>
     <slot name="bottom" />
   </main>
 </template>
@@ -17,7 +17,12 @@ import PostHeader from '@theme/components/PostHeader.vue'
 
 export default {
   components: { PageNav, MyVssue, PostHeader },
-  props: ['sidebarItems']
+  props: ['sidebarItems'],
+  computed: {
+    shouldShowPostContent() {
+      return this.$page.pid && this.$page.pid === 'post'
+    },
+  }
 }
 </script>
 
