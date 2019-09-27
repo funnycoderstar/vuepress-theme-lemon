@@ -27,6 +27,7 @@ export default {
   font-size: 20px;
   padding: 10px;
   border: 5px solid #3eaf7c;
+  display: none;
 }
 
 .my-sw-update-popup button {

@@ -1,9 +1,9 @@
 <template>
-  <div class="category">
+  <div class="Archives">
     <div class="posts-collapse">
       <span class="archive-move-on"></span>
-      <span class="archive-page-counter">好! 目前共计 {{categoryListCount}} 篇文章。 继续努力。</span>
-      <div v-for="(item, index) in categoryList" :key="index">
+      <span class="archive-page-counter">好! 目前共计 {{ArchivesListCount}} 篇文章。 继续努力。</span>
+      <div v-for="(item, index) in ArchivesList" :key="index">
         <div class="collection-title">
           <h1>
               {{item.year}}
@@ -41,16 +41,16 @@
 <script>
 import dayjs from "dayjs";
 export default {
-    name: "Category",
+    name: "Archives",
     data() {
         return {
-            categoryList: [
+            ArchivesList: [
                 {
                     year: "",
                     articleList: [],
                 },
             ],
-            categoryListCount: 0,
+            ArchivesListCount: 0,
         };
     },
     created() {
@@ -73,17 +73,17 @@ export default {
         arr.sort((a, b) => {
             return a.updateTime > b.updateTime ? -1 : 1;
         });
-        this.categoryListCount = arr.length;
-        this.categoryList = [];
+        this.ArchivesListCount = arr.length;
+        this.ArchivesList = [];
         const data = this.groupBy(arr, "year");
         for (let [key, value] of Object.entries(data)) {
             const item = {
                 year: key,
                 articleList: value,
             };
-            this.categoryList.push(item);
+            this.ArchivesList.push(item);
         }
-        this.categoryList.sort((a, b) => {
+        this.ArchivesList.sort((a, b) => {
             return a.year > b.year ? -1 : 1;
         });
     },
@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.category {
+.Archives {
   max-width: $contentWidth
   margin: 0 auto;
   padding: $navbarHeight 0;

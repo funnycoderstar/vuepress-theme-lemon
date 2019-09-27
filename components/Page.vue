@@ -2,10 +2,9 @@
   <main class="page">
     <slot name="top" />
       <PostHeader v-if="shouldShowPostContent"/>
-    <Content class="theme-lemon-content" />
-
-    <PageNav v-bind="{ sidebarItems }" />
-    <MyVssue  v-if="shouldShowPostContent"/>
+      <Content class="theme-lemon-content" />
+      <PageNav v-bind="{ sidebarItems }" />
+      <MyVssue  v-if="shouldShowPostContent"/>
     <slot name="bottom" />
   </main>
 </template>

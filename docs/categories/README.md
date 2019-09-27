@@ -1,3 +1,0 @@
----
-layoutType: 'category'
----

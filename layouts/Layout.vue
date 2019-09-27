@@ -30,7 +30,7 @@
     </Sidebar>
     <Home v-if="$page.frontmatter.home"/>
     <Post v-if="shouldShowPost"/>
-    <Category v-if="shouldShowCategory"/>
+    <Archives v-if="shouldShowArchives"/>
     <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
     <Tags v-if="shouldShowTags"/>
     <Page
@@ -48,7 +48,6 @@
     <div class="pagination-wrap">
         <component  v-if="shouldShowPost" :is="paginationComponent"></component>
     </div>
-    
     <Footer></Footer>
   </div>
 </template>
@@ -58,7 +57,7 @@ import Home from '@theme/components/Home.vue'
 import Navbar from '@theme/components/Navbar.vue'
 import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
-import Category from '@theme/components/Category.vue'
+import Archives from '@theme/components/Archives.vue'
 import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
 import Post from '@theme/components/Post.vue'
@@ -68,7 +67,7 @@ import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/c
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
-  components: { Home, Page, Sidebar, Navbar, Category, Tags, Footer, Post, TagsPost},
+  components: { Home, Page, Sidebar, Navbar, Archives, Tags, Footer, Post, TagsPost},
 
   data () {
     return {
@@ -79,6 +78,7 @@ export default {
 
   computed: {
     shouldShowNavbar () {
+        console.log(this.$page);
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
       if (
@@ -161,11 +161,11 @@ export default {
         userPageClass
       ]
     },
-    shouldShowCategory() {
+    shouldShowArchives() {
       const { frontmatter } = this.$page
       return (
         frontmatter.layoutType
-        && frontmatter.layoutType === 'category'
+        && frontmatter.layoutType === 'Archives'
       )
     },
     shouldShowTags() {
