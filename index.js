@@ -46,7 +46,14 @@ module.exports = (themeConfig, ctx) =>  {
         '@vuepress/back-to-top',
         '@vuepress/active-header-links',
         '@vuepress/plugin-nprogress',
-        // '@vuepress/pwa',
+        ['@vuepress/pwa', {
+            serviceWorker: true,
+            popupComponent: 'MySWUpdatePopup',
+            updatePopup: {       
+                message: "发现新内容可用",        
+                buttonText: "刷新"
+            }
+        }],
         ['@vuepress/medium-zoom', true],
         ['@vuepress/search', {
             searchMaxSuggestions: 10
@@ -66,6 +73,8 @@ module.exports = (themeConfig, ctx) =>  {
         //         clientSecret: 'c19e60db0e8b085f5d15130b254f07089437467d',
         //       },
         // ]
+        [
+        ]
     ]
     const config = {
         alias () {

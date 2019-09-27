@@ -3,6 +3,13 @@ module.exports = {
     description: '木子星兮的博客',
     head: [
         ['link', { rel: 'icon', href: 'https://cdn.wangyaxing.cn/icon-128x128.png' }],
+        ['link', { rel: 'manifest', href: '/manifest.json' }],
+        ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+        ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+        ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+        ['link', { rel: 'apple-touch-icon', href: './public/icons/icon-152x152.png' }],
+        // ['meta', { name: 'msapplication-TileImage', content: './icons/icon-144x144.png' }],
+        ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
     ],
     theme: require.resolve('../../'),
     themeConfig: {
