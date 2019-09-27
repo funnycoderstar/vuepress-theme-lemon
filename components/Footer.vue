@@ -2,11 +2,14 @@
     <footer class="theme-footer">
         <div class="footer-inner">
             © <span class="copyrightYear">{{copyrightYear}}</span>
-            <span class="author">funnycoderstar</span>
+            <span class="author"> <i class="iconfont iconfl-renyuan"></i>funnycoderstar</span> |
+             <span class="author">Powered by 
+                 <a href="https://github.com/funnycoderstar/vuepress-theme-lemon" target="_blank">vuepress-theme-lemon</a>
+            </span>
             <p>
-                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span> &nbsp;
+                <span id="busuanzi_container_site_pv"><i class="iconfont iconai-eye"></i><span id="busuanzi_value_site_pv"></span></span> &nbsp;
                 <span id="busuanzi_container_site_uv">
-                    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+                    <i class="iconfont iconfl-renyuan"></i><span id="busuanzi_value_site_uv"></span>
                 </span>
             </p>
         </div>
@@ -30,7 +33,11 @@ export default {
 .theme-footer {
     text-align: center;
     height: 2rem;
-    line-height: 2rem;
+    .footer-inner {
+        i {
+            color: $textColor;
+        }
+    }
 
 }
 </style>
