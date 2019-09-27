@@ -3,7 +3,6 @@ title: 关于斐波那契数列
 date: 2017-04-09 13:46:12
 tags: [算法]
 categories: 算法
-type: "tags"
 ---
 ![title](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3463546863,3949490182&fm=26&gp=0.jpg)
 # 用js实现斐波那契数列

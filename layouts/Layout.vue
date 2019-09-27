@@ -78,7 +78,6 @@ export default {
 
   computed: {
     shouldShowNavbar () {
-        console.log(this.$page);
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
       if (
