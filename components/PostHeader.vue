@@ -5,10 +5,7 @@
         </h1>
         <div class="post-content">
             <div class="post-item-meta">
-                <router-link class="meta-tag meta" v-for="(tag, tagIndex) in tags" :key="tagIndex" :to="`/tag/${tag}`">
-                    <i class="iconfont icon2"></i>
-                    {{tag}}
-                </router-link>
+                <BlogTag :tags="tags"></BlogTag>
                 <span id="busuanzi_container_page_pv" class="meta-read meta">
                     <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
                 </span>

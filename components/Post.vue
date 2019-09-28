@@ -10,13 +10,10 @@
                         {{article.abstract}}
                     </div>
                     <div class="post-item-meta">
-                        <span class="meta-tag meta" v-for="(tag, tagIndex) in article.tags" :key="tagIndex" @click.stop="handleTagPage(tag)">
-                            <i class="iconfont icon2"></i>
-                            {{tag}}
-                        </span>
-                        <span id="busuanzi_container_page_pv" class="meta-read meta">
+                        <BlogTag :tags=" article.tags"></BlogTag>
+                        <!-- <span id="busuanzi_container_page_pv" class="meta-read meta">
                             <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
+                        </span> -->
                         <span class="meta-time meta">
                             <i class="iconfont iconshijian"></i>
                             {{article.time}}
@@ -110,7 +107,6 @@ export default {
                 overflow hidden
                 & > img {
                     width: 100%
-                    // height: 100%;
                 }
             }
             .post-item-title {
@@ -122,7 +118,7 @@ export default {
             .post-item-meta {
                 color: #999;
                 margin-top: 15px;
-                font-size: 0.8rem;
+                font-size: 0.9rem;
                 display: flex;
                 align-items: center;
                 a {
@@ -135,14 +131,6 @@ export default {
                     i {
                         margin-right: 2px;
                     }
-                }
-                .meta-tag {
-                    i {
-                        font-size: 1rem;
-                    }
-                }
-                .meta-tag:hover {
-                    color: $accentColor
                 }
             }
            

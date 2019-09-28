@@ -1,5 +1,5 @@
 <template>
-  <div class="Archives">
+  <div class="archives-wrap">
     <div class="posts-collapse">
       <span class="archive-move-on"></span>
       <span class="archive-page-counter">好! 目前共计 {{ArchivesListCount}} 篇文章。 继续努力。</span>
@@ -103,13 +103,13 @@ export default {
 </script>
 
 <style lang="stylus">
-.Archives {
+.archives-wrap {
   max-width: $contentWidth
   margin: 0 auto;
   padding: $navbarHeight 0;
   position: relative;
   min-height: calc(100vw - 38rem);
-
+  padding-top: 20px;
   .posts-collapse .archive-move-on {
     position: absolute;
     top: 11px;
