@@ -1,6 +1,10 @@
 # vuepress-theme-lemon
 A simple vuepress theme
 
+# 使用
+```js
+npm i -D vuepress-theme-lemon
+```
 # 现支持的功能
 
 ## v1.0.0

@@ -12,7 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/funnycoderstar/vuepress-theme-lemon.git"
   },
-  "author": "",
+  "keywords": [
+    "vue",
+    "vuepress",
+    "theme",
+    "vuepress-theme-lemon"
+  ],
+  "author": "funnycoderstar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/funnycoderstar/vuepress-theme-lemon/issues"
