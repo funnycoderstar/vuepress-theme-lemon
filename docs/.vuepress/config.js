@@ -41,18 +41,5 @@ module.exports = {
                 ]
         },
         ],
-        // sidebar: {
-        //     '/_posts/': [
-        //         {
-        //             title: '基础',
-        //             collapsable: true,
-        //             children:[
-        //                 'basic/js入门1',
-        //                 'basic/js入门2',
-        //               ]
-        //         }
-        //     ],
-
-        // }
     },
 }
