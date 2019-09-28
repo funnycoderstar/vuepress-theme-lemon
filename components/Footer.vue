@@ -1,18 +1,24 @@
 <template>
     <footer class="theme-footer">
-        <div class="footer-inner">
-            © <span class="copyrightYear">{{copyrightYear}}</span>
-            <span class="author"> <i class="iconfont iconfl-renyuan"></i>funnycoderstar</span>
-             <!-- <span class="author">Powered by 
-                  |<a href="https://github.com/funnycoderstar/vuepress-theme-lemon" target="_blank">vuepress-theme-lemon</a>
-            </span> -->
-            <p>
-                <span id="busuanzi_container_site_pv"><i class="iconfont iconai-eye"></i><span id="busuanzi_value_site_pv"></span></span> &nbsp;
-                <span id="busuanzi_container_site_uv">
-                    | <i class="iconfont iconfl-renyuan"></i><span id="busuanzi_value_site_uv"></span>
-                </span>
-            </p>
-        </div>
+        <p> 
+            © <span>{{copyrightYear}}</span>
+            <span> <i class="iconfont iconfl-renyuan"></i> <a href="https://github.com/funnycoderstar" target="_blank">木子星兮</a></span>
+            <span class="power-info"> | Powered by 
+                <a href="https://github.com/vuejs/vuepress" target="_blank">vuepress</a>
+                |  Theme -  <a href="https://github.com/funnycoderstar/vuepress-theme-lemon" target="_blank">Lemon</a>
+             </span>
+        </p>
+        <p class="visitors">
+            总访问量<span id="busuanzi_value_site_pv"></span>次
+            | 您是第<span id="busuanzi_value_site_uv"></span>个来访者
+        </p>
+        <p class="siteInfo">
+            <span >Powered by 
+                <a href="https://github.com/vuejs/vuepress" target="_blank">vuepress</a>
+                |  Theme -  <a href="https://github.com/funnycoderstar/vuepress-theme-lemon" target="_blank">Lemon</a>
+             </span>
+        </p>
+        
     </footer>
 </template>
 
@@ -31,14 +37,31 @@ export default {
 
 <style lang="stylus">
 .theme-footer {
-    text-align: center;
-    height: 2rem;
-    .footer-inner {
-        i {
-            color: $textColor;
-        }
+    p {
+        margin: 0 
+        padding:0
+        text-align center
     }
-
+    text-align: center;
+    background-color: #262a30
+    padding: 10px 0;
+    font-size: 14px;
+    color: #999;
+    .siteInfo {
+        display none
+    }
 }
+
+@media (max-width: $MQMobile) {
+    .theme-footer {
+     .siteInfo {
+        display block
+    }
+    .power-info {
+        display none
+    }
+}
+}
+
 </style>
 
