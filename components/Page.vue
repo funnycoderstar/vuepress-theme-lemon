@@ -1,5 +1,5 @@
 <template>
-  <main class="page">
+  <main class="page content-wraper">
     <slot name="top" />
       <PostHeader v-if="shouldShowPostContent"/>
       <Content class="theme-lemon-content" />
@@ -29,7 +29,6 @@ export default {
 @require '../styles/wrapper.styl';
 
 .page {
-  padding-bottom: 2rem;
   display: block;
   .theme-lemon-content {
       img {

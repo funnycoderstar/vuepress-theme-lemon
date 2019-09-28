@@ -21,14 +21,7 @@
 
 <script>
 import dayjs  from 'dayjs';
-
 export default {
-    data() {
-        return {
-        }
-    },
-    created() {
-    },
     computed: {
         tags() {
             const currentTags = this.$page.frontmatter.tags;
@@ -44,9 +37,7 @@ export default {
 
 <style lang="stylus">
     .post-content-header {
-         padding $navbarHeight 2rem 0
          max-width $contentWidth
-         margin 0px auto
          text-align center
          .post-item-meta {
                 color:  #999;

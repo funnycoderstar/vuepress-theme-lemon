@@ -107,10 +107,12 @@ export default {
         const next = this.allPostList[index + 1];
         if(index > -1) {
             if(index === 0) {
-                return [
+                return this.allPostList.length > 1 
+                ? [
                     this.$page,
                     next,
                 ]
+                : [ this.$page]
             }
             if(index === this.allPostList.length - 1) {
                 return [
