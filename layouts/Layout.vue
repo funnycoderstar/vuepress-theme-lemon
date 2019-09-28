@@ -28,7 +28,6 @@
         slot="bottom"
       />
     </Sidebar>
-    <Home v-if="$page.frontmatter.home"/>
     <Post v-if="shouldShowPost"/>
     <Archives v-if="shouldShowArchives"/>
     <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
@@ -53,7 +52,6 @@
 </template>
 
 <script>
-import Home from '@theme/components/Home.vue'
 import Navbar from '@theme/components/Navbar.vue'
 import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
@@ -67,7 +65,7 @@ import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/c
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
-  components: { Home, Page, Sidebar, Navbar, Archives, Tags, Footer, Post, TagsPost},
+  components: { Page, Sidebar, Navbar, Archives, Tags, Footer, Post, TagsPost},
 
   data () {
     return {
