@@ -1,6 +1,5 @@
 module.exports = {
     title: '木子星兮', 
-    
     description: '木子星兮的博客',
     head: [
         ['link', { rel: 'icon', href: 'https://cdn.wangyaxing.cn/icon-128x128.png' }],
