@@ -20,6 +20,7 @@ export default {
     name: '',
     data() {
         return {
+            tagLevelList: [1, 1.2, 1.5, 1.8, 2.0, 2.4, 3.0]
         }
     },
     computed: {
@@ -62,19 +63,31 @@ export default {
     methods: {
         getTagStyles(count, color) {
             const value = Number(count);
-            // let color = '#999';
-            // if(value > 1 && value <= 2 ) {
-            //     color = '#666'
-            // }
-            // if(value > 1 && value <= 5) {
-            //     color = '#333'
-            // }
-            // if(value > 5) {
-            //     color = '#000'
-            // }
-            return { fontSize: 1 + value / 10 + 'rem', color, borderColor: color};
             
-        }
+            let level = 0;
+            if(value > 1 && value <= 2 ) {
+                level = 0;
+            }
+            if(value > 1 && value <= 5) {
+                level = 1;
+            }
+            if(value > 5 && value <= 10) {
+                level = 2;
+            }
+            if(value > 5 && value <= 10) {
+                level = 3;
+            }
+            if(value > 10 && value <= 20) {
+                level = 4;
+            }
+            if(value > 20 && value <= 40) {
+                level = 5;
+            }
+            if(value > 50) {
+                level = 6;
+            }
+            return { fontSize: this.tagLevelList[level] + 'rem', color, borderColor: color};
+        },
     },
 }
 </script>
