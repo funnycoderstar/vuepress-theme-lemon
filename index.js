@@ -62,17 +62,6 @@ module.exports = (themeConfig, ctx) =>  {
             '@vuepress/blog',
             blogPluginOptions,
         ],
-        // [
-        //     '@vssue/vuepress-plugin-vssue': {
-        //         // 设置 `platform` 而不是 `api`
-        //         platform: 'github',
-        //         // 其他的 Vssue 配置
-        //         owner: 'funnycoderstar',
-        //         repo: 'gitment-blog',
-        //         clientId: 'f1898d8e3b95cd8b8131',
-        //         clientSecret: 'c19e60db0e8b085f5d15130b254f07089437467d',
-        //       },
-        // ]
         [
         ]
     ]
