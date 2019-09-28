@@ -1,9 +1,9 @@
 <template>
-  <div class="category">
+  <div class="category content-wraper">
     <div class="posts-collapse">
       <div>
         <div class="collection-title">
-          <h1>
+          <h1 :style="{color: currentColor}">
             {{currentTag}}
             <small>标签</small>
           </h1>
@@ -38,18 +38,21 @@
 </template>
 
 <script>
+import randomColor from 'randomcolor';
 import dayjs from "dayjs";
 export default {
     name: "Category",
     data() {
         return {
             currentTag: '',
+            currentColor: '',
         };
     },
     computed: {
         tagList() {
             const regularPath = decodeURIComponent(this.$page.regularPath)
             this.currentTag = regularPath.slice(5, regularPath.length - 1);
+            this.currentColor = randomColor({ seed: this.currentTag, luminosity: 'dark'});
             const result = this.$site.pages.filter(item => item.pid === "post");
             let arr = [];
             for (let i = 0; i < result.length; i++) {
@@ -78,13 +81,6 @@ export default {
 
 <style lang="stylus">
 .category {
-  max-width: $contentWidth;
-  margin: 0 auto;
-  padding: $navbarHeight;
-  padding-top: 100px;
-  position: relative;
-  min-height: calc(100vw - 38rem);
-
   .posts-collapse .archive-move-on {
     position: absolute;
     top: 11px;
@@ -103,7 +99,7 @@ export default {
     top: 3px;
     left: 20px;
   }
-}
+
 
 .posts-collapse::after {
   content: ' ';
@@ -126,7 +122,7 @@ export default {
     display: block;
     transform: translateX(0px);
     position: relative;
-    margin: 60px 0;
+    margin: 50px 0;
 
     small {
       color: #bbb;
@@ -211,6 +207,7 @@ export default {
 
 .posts-collapse .post {
   margin: 30px 0;
+}
 }
 </style>
 

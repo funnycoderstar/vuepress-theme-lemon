@@ -1,5 +1,5 @@
 <template>
-    <div class="post-container">
+    <div class="post-container content-wraper">
         <div class="post-block">
             <div v-for="(article, index) in articlesList" :key="index" class="post-item " @click="handlePage(article.link)" >
                 <article :class="{'page-with-img': article.thumbnailLink}">
@@ -75,7 +75,6 @@ export default {
 <style lang="stylus">
 .post-container {
     padding $navbarHeight 2rem 0
-    max-width $contentWidth
     margin 0px auto
     display block
     .post-block {
@@ -133,11 +132,26 @@ export default {
                     }
                 }
             }
-           
-
         }
     }
 }
+@media (max-width: $MQMobile){
+    .post-container {
+        .post-block {
+            .post-item  {
+            .page-with-img {
+                padding-right: 0;
+             }
+            }
+            .thumbnail-img-wrap {
+                display: none;
+            }
+        }
+        
+    }
+}
+ 
+    
 </style>
 
 

@@ -14,7 +14,8 @@ module.exports = {
     ],
     theme: require.resolve('../../'),
     themeConfig: {
-        logo: './newLogo.png',
+        logo: 'https://cdn.wangyaxing.cn/newLogoGreen.png',
+        // logo: 'https://cdn.wangyaxing.cn/newLogoJian.png',
         lastUpdated: 'Last Updated',
         summary: true,
         nav: [

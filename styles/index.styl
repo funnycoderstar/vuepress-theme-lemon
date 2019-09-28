@@ -4,11 +4,8 @@
 @require './arrow'
 @require './wrapper'
 @require './toc'
-@import '//at.alicdn.com/t/font_1429350_5qx0w4ivepg.css'
+@import '//at.alicdn.com/t/font_1429350_xydrvqymbb.css'
 
-$navIndex = 1000;
-$sideBarIndex = 999;
-$postsCollapseIndex = 998;
 html, body
   padding 0
   margin 0
@@ -53,7 +50,7 @@ body
   margin 0
   top $navbarHeight
   left 0
-  bottom 0
+  bottom 5rem
   box-sizing border-box
   border-right 1px solid $borderColor
   overflow-y auto
@@ -198,6 +195,17 @@ th, td
   margin 0 auto;
   text-align center
 }
+.content-wraper {
+    max-width: $contentWidth;
+    margin: 0 auto;
+    padding $navbarHeight 0;
+    position: relative;
+    min-height: calc(100vh- 11rem);
+}
+
+@media (max-width: $MQMobile)
+  .content-wraper
+      min-height: calc(100vh- 13rem);
 @media (min-width: ($MQMobile + 1px))
   .theme-container.no-sidebar
     .sidebar

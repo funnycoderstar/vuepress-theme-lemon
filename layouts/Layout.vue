@@ -9,7 +9,6 @@
       v-if="shouldShowNavbar"
       @toggle-sidebar="toggleSidebar"
     />
-
     <div
       class="sidebar-mask"
       @click="toggleSidebar(false)"
@@ -34,6 +33,7 @@
     <Tags v-if="shouldShowTags"/>
     <Page
       :sidebar-items="sidebarItems"
+      v-if="shouldShowPostContent || $page.path === '/about/'"
     >
       <slot
         name="page-top"

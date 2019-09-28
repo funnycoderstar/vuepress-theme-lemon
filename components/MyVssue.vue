@@ -30,6 +30,9 @@ export default {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 2.5rem;
+    a {
+        color: $accentColor !important
+    }
 }
 </style>
 

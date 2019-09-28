@@ -1,5 +1,5 @@
 <template>
-    <div class="tags">
+    <div class="tags content-wraper">
         <header class="tags-header">
             <h1>标签</h1>
         </header>
@@ -94,12 +94,7 @@ export default {
 
 <style lang="stylus">
     .tags {
-        max-width: $contentWidth;
-        margin: 0 auto;
-        padding $navbarHeight 0;
-        position: relative;
         text-align center;
-        min-height: calc(100vw - 30rem);
         .tag-cloud-tags {
             margin-top: 20px;
             .tag-item {

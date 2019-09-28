@@ -50,6 +50,7 @@ export default {
 
 @media (max-width: $MQMobile)
   .sidebar
+    bottom: 0
     .nav-links
       display block
       .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after

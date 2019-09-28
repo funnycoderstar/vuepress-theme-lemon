@@ -1,6 +1,7 @@
 <template>
-  <div class="archives-wrap">
-    <div class="posts-collapse">
+  <div class="archives-wrap content-wraper">
+    <div class="archives-content">
+      <div class="posts-collapse">
       <span class="archive-move-on"></span>
       <span class="archive-page-counter">好! 目前共计 {{ArchivesListCount}} 篇文章。 继续努力。</span>
       <div v-for="(item, index) in ArchivesList" :key="index">
@@ -35,6 +36,8 @@
         </article>
       </div>
     </div>
+    </div>
+    
   </div>
 </template>
 
@@ -104,12 +107,9 @@ export default {
 
 <style lang="stylus">
 .archives-wrap {
-  max-width: $contentWidth
-  margin: 0 auto;
-  padding: $navbarHeight 0;
-  position: relative;
-  min-height: calc(100vw - 38rem);
-  padding-top: 20px;
+  .archives-content {
+      margin: 30px 0;
+  }
   .posts-collapse .archive-move-on {
     position: absolute;
     top: 11px;
@@ -128,7 +128,7 @@ export default {
     top: 3px;
     left: 20px;
   }
-}
+
 
 .posts-collapse::after {
   content: ' ';
@@ -236,6 +236,7 @@ export default {
 
 .posts-collapse .post {
   margin: 30px 0;
+}
 }
 </style>
 

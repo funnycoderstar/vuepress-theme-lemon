@@ -31,5 +31,10 @@ export default {
 .page {
   padding-bottom: 2rem;
   display: block;
+  .theme-lemon-content {
+      img {
+        width: $contentWidth
+      }
+  }
 }
 </style>
