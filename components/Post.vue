@@ -18,6 +18,8 @@
                             <i class="iconfont iconshijian"></i>
                             {{article.time}}
                         </span>
+                        <span>字数: {{article.textCount}}</span>
+                        <span>预计阅读时间: {{article.readingTime}}</span>
                     </div>
                 </article>
                 <div v-if="article.thumbnailLink" class="thumbnail-img-wrap">
@@ -38,6 +40,7 @@ export default {
             let arr = [];
             for(let i = 0; i < result.length; i++) {
                 if(result[i].title) {
+                    const {textCount, readingTime} = result[i];
                     const updataTime = result[i].frontmatter.date ? result[i].frontmatter.date: result[i].lastUpdated;
                     const item = {
                         title: result[i].title,
@@ -48,6 +51,8 @@ export default {
                         tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
                         readCount: 100,
                         imgLoad: true,
+                        textCount,
+                        readingTime,
                     }
                     arr.push(item);
                 }
@@ -56,7 +61,7 @@ export default {
             arr.sort((a,b) => {
                 return a.time > b.time ? -1 : 1;
             })
-           
+
             return arr;
         }
     },
@@ -122,6 +127,9 @@ export default {
                 align-items: center;
                 a {
                     color #999
+                }
+                span {
+                    margin-right: 10px;
                 }
                  .meta {
                     margin-right: 10px;

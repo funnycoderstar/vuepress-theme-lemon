@@ -13,6 +13,8 @@
                     <i class="iconfont iconshijian"></i>
                     {{time}}
                 </span>
+                <span>字数: {{$page.textCount}}</span>
+                <span>预计阅读时间: {{$page.readingTime}}</span>
             </div>
         </div>
         
@@ -48,6 +50,9 @@ export default {
                 justify-content: center;
                 a {
                     color #999
+                }
+                span {
+                    margin-right: 10px;
                 }
                  .meta {
                     margin-right: 10px;
