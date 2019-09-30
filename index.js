@@ -99,12 +99,36 @@ module.exports = (themeConfig, ctx) => {
             if (!strippedContent) {
                 return;
             }
-            // 匹配第一个img链接
+            /**
+             * 匹配第一个img链接
+             */ 
             const firstImgReg = /!\[.*\]\((.+)\)/;
             const firstImgLink = pageCtx._content.match(firstImgReg);
             if (firstImgLink) {
                 pageCtx.thumbnailLink = firstImgLink[1];
             }
+
+            /**
+             * 统计文章字数和阅读时间
+             */ 
+            let {_strippedContent: content} = pageCtx;
+            /** 去除空白字符 */
+            content = content.replace(/\s/g, '');
+            /** 计算图片数量 */
+            const imageRegex = /!\[.*?\]\(.*?\)/g;
+            const matchImageResult = content.match(imageRegex);
+            const imageCount = matchImageResult ? matchImageResult.length : 0;
+            /** 去除图片 */
+            content = content.replace(imageRegex, '');
+            /** 字数 */
+            pageCtx.textCount = content.length;
+            /** 阅读时间 */
+            const readingTime = Math.ceil(pageCtx.textCount / 8 + imageCount * 3 + (imageCount <= 10 ? (20 - imageCount) * imageCount / 2 : 0));
+            pageCtx. readingTime = Math.ceil(readingTime / 60) + '分钟';
+            
+            /**
+             * 添加文章概要，默认取 前200个字符
+             */ 
             pageCtx.summary =
                 removeMd(
                     strippedContent
@@ -114,29 +138,5 @@ module.exports = (themeConfig, ctx) => {
                 ) + " ...";
         };
     }
-
-    /**
-     * 统计文章字数和阅读时间
-     */
-    config.extendPageData = function(page) {
-      let {_strippedContent: content} = page;
-      if (content) {
-        /** 去除空白字符 */
-        content = content.replace(/\s/g, '');
-        /** 计算图片数量 */
-        const imageRegex = /!\[.*?\]\(.*?\)/g;
-        const matchImageResult = content.match(imageRegex);
-        const imageCount = matchImageResult ? matchImageResult.length : 0;
-        /** 去除图片 */
-        content = content.replace(imageRegex, '');
-
-        /** 字数 */
-        page.textCount = content.length;
-        /** 阅读时间 */
-        page.readingTime = Math.ceil(page.textCount / 8 + imageCount * 3 + (imageCount <= 10 ? (20 - imageCount) * imageCount / 2 : 0));
-        page.readingTime = Math.ceil(page.readingTime / 60) + '分钟';
-      }
-    }
-
     return config;
 };
