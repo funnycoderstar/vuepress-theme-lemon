@@ -5,6 +5,14 @@ A simple vuepress theme
 ```js
 npm i -D vuepress-theme-lemon
 ```
+# 快速生成模板文件
+```js
+$ npm i -g miko-cli
+$ miko-cli create myBlog vuepress-lemon
+$ cd muBlog
+$ npm run dev
+```
+
 # 现支持的功能
 
 ## v1.0.0
@@ -16,7 +24,7 @@ npm i -D vuepress-theme-lemon
 - [X] PWA
 
 ## 1.1.0
-- [ ] 文章的字数显示和阅读时长
+- [X] 文章的字数显示和阅读时长
 - [ ] 留言板功能
 - [ ] 热门文章
 
