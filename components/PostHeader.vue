@@ -4,23 +4,12 @@
             {{$page.title}}
         </h1>
         <div class="post-content">
-            <div class="post-item-meta">
-                <BlogTag :tags="tags"></BlogTag>
-                <span id="busuanzi_container_page_pv" class="meta-read meta">
-                    <i class="iconfont iconyanjing"></i><span id="busuanzi_value_page_pv"></span>
-                </span>
-                <span class="meta-time meta">
-                    <i class="iconfont iconriqi"></i>
-                    {{time}}
-                </span>
-                <span class="pageCount">
-                    <i class="iconfont iconfilewordo"></i>
-                   {{$page.textCount}}</span>
-                <span class="pageReadingTime"> 
-                    <i class="iconfont iconshijian"></i> 
-                     {{$page.readingTime}}
-                </span>
-            </div>
+            <BlogMeta
+                :tags="tags"
+                :time="time"
+                :textCount="$page.textCount"
+                :readingTime="$page.readingTime"
+            />
         </div>
         
     </div>
@@ -28,7 +17,11 @@
 
 <script>
 import dayjs  from 'dayjs';
+import BlogMeta from './BlogMeta.vue';
 export default {
+    components: {
+        BlogMeta
+    },
     computed: {
         tags() {
             const currentTags = this.$page.frontmatter.tags;

@@ -9,18 +9,12 @@
                     <div class="post-item-abstract">
                         {{article.abstract}}
                     </div>
-                    <div class="post-item-meta">
-                        <BlogTag :tags=" article.tags"></BlogTag>
-                        <!-- <span id="busuanzi_container_page_pv" class="meta-read meta">
-                            <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
-                        </span> -->
-                        <span class="meta-time meta">
-                            <i class="iconfont iconriqi"></i>
-                            {{article.time}}
-                        </span>
-                        <span  class="meta pageCount"><i class="iconfont iconfilewordo"></i>{{article.textCount}}</span>
-                        <span  class="meta pageReadingTime"> <i class="iconfont iconshijian"></i> {{article.readingTime}}</span>
-                    </div>
+                    <BlogMeta
+                        :tags="article.tags"
+                        :time="article.time"
+                        :textCount="article.textCount"
+                        :readingTime="article.readingTime"
+                    />
                 </article>
                 <div v-if="article.thumbnailLink" class="thumbnail-img-wrap">
                     <img :src="article.thumbnailLink" alt="">
@@ -32,8 +26,12 @@
 
 <script>
 import dayjs  from 'dayjs';
+import BlogMeta from './BlogMeta.vue';
 export default {
     name: 'Post',
+    components: {
+        BlogMeta
+    },
     computed: {
         articlesList() {
             const result = this.$pagination.pages.filter(item => item.pid === 'post');
