@@ -1,7 +1,7 @@
 <template>
 <div class="blog-tag" v-if="tags.length">
     <router-link class="meta-tag meta" v-for="(tag, tagIndex) in tags" :key="tagIndex" :to="`/tag/${tag}`" :style="getTagStyles(tag) ">
-        <i class="iconfont icon2"></i>
+        <i class="iconfont icon2 tagIcon"></i>
         {{tag}}
     </router-link>
 </div>
@@ -30,4 +30,7 @@ export default {
     display inline-flex
     transition: background-color .3s
     transition all .5s
+    .tagIcon 
+        font-size 14px
+        margin-top 4px;
 </style>

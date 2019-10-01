@@ -15,11 +15,11 @@
                             <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
                         </span> -->
                         <span class="meta-time meta">
-                            <i class="iconfont iconshijian"></i>
+                            <i class="iconfont iconriqi"></i>
                             {{article.time}}
                         </span>
-                        <span>字数: {{article.textCount}}</span>
-                        <span>预计阅读时间: {{article.readingTime}}</span>
+                        <span  class="meta pageCount"><i class="iconfont iconfilewordo"></i>{{article.textCount}}</span>
+                        <span  class="meta pageReadingTime"> <i class="iconfont iconshijian"></i> {{article.readingTime}}</span>
                     </div>
                 </article>
                 <div v-if="article.thumbnailLink" class="thumbnail-img-wrap">
@@ -51,7 +51,7 @@ export default {
                         tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
                         readCount: 100,
                         imgLoad: true,
-                        textCount,
+                        textCount: Number(textCount) > 1000 ? Number(textCount) / 100 + 'k' : textCount,
                         readingTime,
                     }
                     arr.push(item);
@@ -123,20 +123,22 @@ export default {
                 color: #999;
                 margin-top: 15px;
                 font-size: 0.9rem;
-                display: flex;
-                align-items: center;
                 a {
                     color #999
                 }
-                span {
-                    margin-right: 10px;
-                }
                  .meta {
                     margin-right: 10px;
-                    display: flex;
-                    align-items: center;
                     i {
-                        margin-right: 2px;
+                        margin-right: 3px;
+                    }
+                    .iconfilewordo {
+                        font-size: 15px;
+                    }
+                    .iconriqi {
+                        font-size: 14px;
+                    }
+                    .iconshijian {
+                        margin-right: 0px;
                     }
                 }
             }
@@ -153,6 +155,12 @@ export default {
             }
             .thumbnail-img-wrap {
                 display: none;
+            }
+             .pageCount {
+                display none
+            }
+            .pageReadingTime {
+                display none
             }
         }
         

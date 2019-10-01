@@ -124,8 +124,8 @@ module.exports = (themeConfig, ctx) => {
             pageCtx.textCount = content.length;
             /** 阅读时间 */
             const readingTime = Math.ceil(pageCtx.textCount / 8 + imageCount * 3 + (imageCount <= 10 ? (20 - imageCount) * imageCount / 2 : 0));
-            pageCtx. readingTime = Math.ceil(readingTime / 60) + '分钟';
-            
+            pageCtx. readingTime = Math.ceil(readingTime / 60) + 'min';
+
             /**
              * 添加文章概要，默认取 前200个字符
              */ 

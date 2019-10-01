@@ -7,14 +7,19 @@
             <div class="post-item-meta">
                 <BlogTag :tags="tags"></BlogTag>
                 <span id="busuanzi_container_page_pv" class="meta-read meta">
-                    <i class="iconfont iconai-eye"></i><span id="busuanzi_value_page_pv"></span>
+                    <i class="iconfont iconyanjing"></i><span id="busuanzi_value_page_pv"></span>
                 </span>
                 <span class="meta-time meta">
-                    <i class="iconfont iconshijian"></i>
+                    <i class="iconfont iconriqi"></i>
                     {{time}}
                 </span>
-                <span>字数: {{$page.textCount}}</span>
-                <span>预计阅读时间: {{$page.readingTime}}</span>
+                <span class="pageCount">
+                    <i class="iconfont iconfilewordo"></i>
+                    字数: {{$page.textCount}}</span>
+                <span class="pageReadingTime"> 
+                    <i class="iconfont iconshijian"></i> 
+                    阅读时长 ≈ {{$page.readingTime}}
+                </span>
             </div>
         </div>
         
@@ -44,7 +49,7 @@ export default {
          .post-item-meta {
                 color:  #999;
                 margin-top: 15px;
-                font-size: 0.8rem;
+                font-size: 0.9rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -54,17 +59,15 @@ export default {
                 span {
                     margin-right: 10px;
                 }
+                .iconai-eye {
+                    font-size: 1.2rem;
+                    color: #f5f5f5
+                    margin-top:2px;
+                }
                  .meta {
                     margin-right: 10px;
-                    display: flex;
-                    align-items: center;
                     i {
                         margin-right: 2px;
-                    }
-                }
-                .meta-tag {
-                    i {
-                        font-size: 1.2rem;
                     }
                 }
                 .meta-tag:hover {
@@ -76,6 +79,12 @@ export default {
 @media (max-width: $MQMobile)
   .post-content-header {
       padding-left: 0;
+      .pageCount {
+          display none
+      }
+      .pageReadingTime {
+          display none
+      }
   }
     
 </style>
