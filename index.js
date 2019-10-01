@@ -41,7 +41,6 @@ module.exports = (themeConfig, ctx) => {
             ? modifyBlogPluginOptions(defaultBlogPluginOptions)
             : defaultBlogPluginOptions;
     const plugins = [
-        "@vuepress/back-to-top",
         "@vuepress/active-header-links",
         "@vuepress/plugin-nprogress",
         [
