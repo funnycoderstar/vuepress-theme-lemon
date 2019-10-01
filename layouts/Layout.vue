@@ -48,6 +48,7 @@
         <component  v-if="shouldShowPost" :is="paginationComponent"></component>
     </div>
     <Footer></Footer>
+    <Backtop/>
   </div>
 </template>
 
