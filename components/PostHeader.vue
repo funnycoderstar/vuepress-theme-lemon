@@ -15,10 +15,10 @@
                 </span>
                 <span class="pageCount">
                     <i class="iconfont iconfilewordo"></i>
-                    字数: {{$page.textCount}}</span>
+                   {{$page.textCount}}</span>
                 <span class="pageReadingTime"> 
                     <i class="iconfont iconshijian"></i> 
-                    阅读时长 ≈ {{$page.readingTime}}
+                     {{$page.readingTime}}
                 </span>
             </div>
         </div>
@@ -36,7 +36,7 @@ export default {
         },
         time() {
             const updataTime = this.$page.frontmatter.date ? this.$page.frontmatter.date: this.$page.lastUpdated;
-            return dayjs(updataTime).format('YYYY.MM.DD HH:mm');
+            return dayjs(updataTime).format('YYYY.MM.DD');
         }
      },
 }

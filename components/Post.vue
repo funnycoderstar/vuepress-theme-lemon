@@ -47,7 +47,7 @@ export default {
                         link: result[i].regularPath,
                         thumbnailLink: result[i].thumbnailLink || '',
                         abstract: result[i].summary,
-                        time: dayjs(updataTime).format('YYYY.MM.DD HH:mm'),
+                        time: dayjs(updataTime).format('YYYY.MM.DD'),
                         tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
                         readCount: 100,
                         imgLoad: true,
