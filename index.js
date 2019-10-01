@@ -47,7 +47,6 @@ module.exports = (themeConfig, ctx) => {
             "@vuepress/pwa",
             {
                 serviceWorker: true,
-                popupComponent: "MySWUpdatePopup",
                 updatePopup: {
                     message: "发现新内容可用",
                     buttonText: "刷新",
