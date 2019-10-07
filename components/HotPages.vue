@@ -34,12 +34,5 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-.hot-pages-wrap {
-    width: 30rem;
-    margin-left: 2rem;
-}
-</style>
-
 
 
