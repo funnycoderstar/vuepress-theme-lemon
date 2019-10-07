@@ -1,22 +1,28 @@
 <template>
     <div class="content-wraper home-container">
         <Post />
-        <HotPages/>
+        <div class="home-sidebar">
+            <!-- <SiteInfo/> -->
+             <HotPages/>
+        </div>
+       
     </div>
 </template>
 
 <script>
-import HotPages from '@theme/components/HotPages.vue';
 import Post from '@theme/components/Post.vue'
+import HotPages from '@theme/components/HotPages.vue';
+import SiteInfo from '@theme/components/SiteInfo.vue';
 export default {
     name: 'Home',
     components: {
-        HotPages,
         Post,
+        HotPages,
+        SiteInfo,
     },
     data() {
         return {
-            
+
         }
     },
     
@@ -26,10 +32,23 @@ export default {
 <style lang="stylus">
     .home-container {
         display: flex;
-        padding: $navbarHeight 2rem 0;
-        margin: 0px auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
         max-width: 960px;
+        .home-sidebar {
+            width: 30rem;
+            margin-left: 2rem;
+        }
     }
+@media (max-width: $MQMobile) {
+    .home-container {
+        .home-sidebar {
+            display none
+        }
+    }
+}
+
+   
 </style>
 
 

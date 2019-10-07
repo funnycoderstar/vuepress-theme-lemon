@@ -28,12 +28,17 @@
                 </div>
             </div>
         </div>
+        <div class="pagination-wrap">
+            <component :is="paginationComponent"></component>
+        </div>
     </div>
+    
 </template>
 
 <script>
 import dayjs from "dayjs";
 import BlogMeta from "./BlogMeta.vue";
+import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components';
 export default {
     name: "Post",
     components: {
@@ -43,9 +48,11 @@ export default {
         return {
             // 文章访问量, Map结构
             countersMap: {},
+            paginationComponent: null
         };
     },
     async created() {
+        this.paginationComponent = this.getPaginationComponent()
         // 去 learncloud 取数据
         const query = decodeURIComponent(
             JSON.stringify({
@@ -138,12 +145,25 @@ export default {
             const path = `/tag/${tag}`;
             this.$router.push(path);
         },
+        getPaginationComponent() {
+            const n = THEME_BLOG_PAGINATION_COMPONENT;
+            if (n === 'Pagination') {
+            return Pagination
+            }
+
+            if (n === 'SimplePagination') {
+            return SimplePagination
+            }
+
+            return Vue.component(n) || Pagination
+        },
     },
 };
 </script>
 
 <style lang="stylus">
 .post-container {
+    position relative
     .post-block {
         cursor: pointer;
         color: $textColor;
@@ -218,6 +238,11 @@ export default {
                 }
             }
         }
+    }
+    .pagination-wrap {
+        text-align center
+        bottom: 0;
+         position absolute;
     }
 }
 

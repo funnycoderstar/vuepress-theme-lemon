@@ -45,9 +45,6 @@
         slot="bottom"
       />
     </Page>
-    <div class="pagination-wrap">
-        <component  v-if="shouldShowPost" :is="paginationComponent"></component>
-    </div>
     <Footer></Footer>
     <Backtop/>
   </div>
@@ -62,9 +59,7 @@ import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
 import Home from '@theme/components/Home.vue'
 import TagsPost from '@theme/components/TagsPost.vue'
-
 import { resolveSidebarItems } from '../util';
-import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components';
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
@@ -73,7 +68,6 @@ export default {
   data () {
     return {
       isSidebarOpen: false,
-      paginationComponent: null
     }
   },
 
@@ -196,7 +190,6 @@ export default {
     },
   },
   created() {
-    this.paginationComponent = this.getPaginationComponent()
     window.AV = require("leancloud-storage");
     const { appId, appKey } = this.$themeConfig.valine;
     AV.init({
@@ -211,18 +204,6 @@ export default {
   },
 
   methods: {
-    getPaginationComponent() {
-        const n = THEME_BLOG_PAGINATION_COMPONENT;
-        if (n === 'Pagination') {
-          return Pagination
-        }
-
-        if (n === 'SimplePagination') {
-          return SimplePagination
-        }
-
-        return Vue.component(n) || Pagination
-      },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
       this.$emit('toggle-sidebar', this.isSidebarOpen)
