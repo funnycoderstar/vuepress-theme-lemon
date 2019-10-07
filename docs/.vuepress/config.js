@@ -17,6 +17,22 @@ module.exports = {
         // logo: 'https://cdn.wangyaxing.cn/newLogoJian.png',
         lastUpdated: 'Last Updated',
         summary: true,
+        vssue: {
+            locale: 'zh',
+            owner: 'funnycoderstar', 
+            repo: 'gitment-blog', // 仓库名称
+            clientId: 'f1898d8e3b95cd8b8131',
+            clientSecret: 'c19e60db0e8b085f5d15130b254f07089437467d',
+        },
+        valine: {
+            appId: "nafsOjKsupw2WaoYYfMKGfpk-gzGzoHsz",
+            appKey: "E9brQ6aYGz9rkmgiiC0hyfSG",
+            notify: false,
+            verify: false,
+            visitor: true,
+            avatar: "wavatar",
+            placeholder: "添加评论",
+        },
         nav: [
             { text: '首页', link: '/' },
             { text: '归档', link: '/archives/' },
@@ -38,7 +54,7 @@ module.exports = {
                         link: 'https://github.com/funnycoderstar'
                     },
                 ]
-        },
+            },
         ],
     },
 }
