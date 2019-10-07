@@ -4,7 +4,8 @@
       <PostHeader v-if="shouldShowPostContent"/>
       <Content class="theme-lemon-content" />
       <PageNav v-bind="{ sidebarItems }" />
-      <MyVssue  v-if="shouldShowPostContent"/>
+      <Valine v-if="shouldShowPostContent"></Valine>
+      <!-- <MyVssue  v-if="shouldShowPostContent"/> -->
     <slot name="bottom" />
   </main>
 </template>
@@ -13,9 +14,10 @@
 import PageNav from '@theme/components/PageNav.vue'
 import MyVssue from '@theme/components/MyVssue.vue'
 import PostHeader from '@theme/components/PostHeader.vue'
+import Valine from '@theme/components/Valine.vue';
 
 export default {
-  components: { PageNav, MyVssue, PostHeader },
+  components: { PageNav, MyVssue, PostHeader, Valine },
   props: ['sidebarItems'],
   computed: {
     shouldShowPostContent() {

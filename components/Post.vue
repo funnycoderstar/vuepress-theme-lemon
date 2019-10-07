@@ -1,23 +1,29 @@
 <template>
     <div class="post-container content-wraper">
         <div class="post-block">
-            <div v-for="(article, index) in articlesList" :key="index" class="post-item " @click="handlePage(article.link)" >
-                <article :class="{'page-with-img': article.thumbnailLink}">
+            <div
+                v-for="(article, index) in articlesList"
+                :key="index"
+                class="post-item "
+                @click="handlePage(article.link)"
+            >
+                <article :class="{ 'page-with-img': article.thumbnailLink }">
                     <h3 class="post-item-title">
-                        {{article.title}}
+                        {{ article.title }}
                     </h3>
                     <div class="post-item-abstract">
-                        {{article.abstract}}
+                        {{ article.abstract }}
                     </div>
                     <BlogMeta
                         :tags="article.tags"
                         :time="article.time"
                         :textCount="article.textCount"
                         :readingTime="article.readingTime"
+                        :counter="countersMap[article.link]"
                     />
                 </article>
                 <div v-if="article.thumbnailLink" class="thumbnail-img-wrap">
-                    <img :src="article.thumbnailLink" alt="">
+                    <img :src="article.thumbnailLink" alt="" />
                 </div>
             </div>
         </div>
@@ -25,116 +31,190 @@
 </template>
 
 <script>
-import dayjs  from 'dayjs';
-import BlogMeta from './BlogMeta.vue';
+import dayjs from "dayjs";
+import BlogMeta from "./BlogMeta.vue";
 export default {
-    name: 'Post',
+    name: "Post",
     components: {
-        BlogMeta
+        BlogMeta,
+    },
+    data() {
+        return {
+            // 文章访问量, Map结构
+            countersMap: {},
+        };
+    },
+    async created() {
+        // 去 learncloud 取数据
+        const query = decodeURIComponent(
+            JSON.stringify({
+                url: {
+                    $in: this.articlesList.map(article => article.link),
+                },
+            }),
+        );
+        const res = await fetch(
+            `https://avoscloud.com/1.1/classes/Counter?where=${query}`,
+            {
+                credentials: "omit",
+                headers: {
+                    "content-type": "application/json;charset=UTF-8",
+                    "sec-fetch-mode": "cors",
+                    "x-lc-id": "nafsOjKsupw2WaoYYfMKGfpk-gzGzoHsz",
+                    "x-lc-sign":
+                        "42342e3bbc2c97b0ed0059b4cb85283c,1570450414790",
+                    "x-lc-ua": "LeanCloud-JS-SDK/3.15.0 (Browser)",
+                },
+                referrer:
+                    "http://0.0.0.0:8081/_posts/vuepress-theme-lemon.html",
+                referrerPolicy: "no-referrer-when-downgrade",
+                body: null,
+                method: "GET",
+                mode: "cors",
+            },
+        );
+        /**
+         * 成功, 转成方便用的Map结构数据
+         * 失败, log提示
+         */
+        if (res.status === 200) {
+            const data = await res.json();
+            this.countersMap = data.results.reduce((r, article) => {
+                const {url, time} = article;
+                r[url] = time;
+                return r;
+            }, {})
+        } else {
+            console.warn("获取访问量失败");
+        }
     },
     computed: {
         articlesList() {
-            const result = this.$pagination.pages.filter(item => item.pid === 'post');
+            const result = this.$pagination.pages.filter(
+                item => item.pid === "post",
+            );
             let arr = [];
-            for(let i = 0; i < result.length; i++) {
-                if(result[i].title) {
-                    const {textCount, readingTime} = result[i];
-                    const updataTime = result[i].frontmatter.date ? result[i].frontmatter.date: result[i].lastUpdated;
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].title) {
+                    const { textCount, readingTime } = result[i];
+                    const updataTime = result[i].frontmatter.date
+                        ? result[i].frontmatter.date
+                        : result[i].lastUpdated;
                     const item = {
                         title: result[i].title,
                         link: result[i].regularPath,
-                        thumbnailLink: result[i].thumbnailLink || '',
+                        thumbnailLink: result[i].thumbnailLink || "",
                         abstract: result[i].summary,
-                        time: dayjs(updataTime).format('YYYY.MM.DD'),
-                        tags: result[i].frontmatter.tags ? (Array.isArray(result[i].frontmatter.tags) ? result[i].frontmatter.tags: [result[i].frontmatter.tags]) : [],
+                        time: dayjs(updataTime).format("YYYY.MM.DD"),
+                        tags: result[i].frontmatter.tags
+                            ? Array.isArray(result[i].frontmatter.tags)
+                                ? result[i].frontmatter.tags
+                                : [result[i].frontmatter.tags]
+                            : [],
                         readCount: 100,
                         imgLoad: true,
-                        textCount: Number(textCount) > 1000 ? Number(textCount) / 100 + 'k' : textCount,
+                        textCount:
+                            Number(textCount) > 1000
+                                ? Number(textCount) / 100 + "k"
+                                : textCount,
                         readingTime,
-                    }
+                    };
                     arr.push(item);
                 }
-            
-            };
-            arr.sort((a,b) => {
+            }
+            arr.sort((a, b) => {
                 return a.time > b.time ? -1 : 1;
-            })
+            });
 
             return arr;
-        }
+        },
     },
     methods: {
         handlePage(path) {
-            this.$router.push(path)
+            this.$router.push(path);
         },
         handleTagPage(tag) {
             const path = `/tag/${tag}`;
-            this.$router.push(path)
+            this.$router.push(path);
         },
-    }
-}
+    },
+};
 </script>
 
 <style lang="stylus">
 .post-container {
-    padding $navbarHeight 2rem 0
-    margin 0px auto
-    display block
+    padding: $navbarHeight 2rem 0;
+    margin: 0px auto;
+    display: block;
+
     .post-block {
-        cursor pointer
+        cursor: pointer;
         color: $textColor;
+
         .post-item-abstract {
-            font-weight normal;
+            font-weight: normal;
         }
+
         .post-item {
             // display flex;
             // justify-content space-between；
-            align-items center;
+            align-items: center;
             width: 100%;
             color: $textColor;
             padding-top: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid $borderColor;
             word-wrap: break-word;
-            position relative
-            overflow hidden
+            position: relative;
+            overflow: hidden;
+
             .thumbnail-img-wrap {
                 width: 200px;
                 height: 120px;
-                position absolute
+                position: absolute;
                 right: 0;
                 top: 50%;
                 margin-top: -60px;
                 border: 1px solid $borderColor;
-                overflow hidden
+                overflow: hidden;
+
                 & > img {
-                    width: 100%
+                    width: 100%;
                 }
             }
+
             .post-item-title {
                 margin-top: 0;
             }
+
             .page-with-img {
                 padding-right: 220px;
             }
+
             .post-item-meta {
                 color: #999;
                 margin-top: 15px;
                 font-size: 0.9rem;
+
                 a {
-                    color #999
+                    color: #999;
                 }
-                 .meta {
+
+                .meta {
                     margin-right: 10px;
+
                     i {
                         margin-right: 3px;
                     }
+
                     .iconfilewordo {
                         font-size: 15px;
                     }
+
                     .iconriqi {
                         font-size: 14px;
                     }
+
                     .iconshijian {
                         margin-right: 0px;
                     }
@@ -143,29 +223,30 @@ export default {
         }
     }
 }
-@media (max-width: $MQMobile){
+
+@media (max-width: $MQMobile) {
     .post-container {
         .post-block {
-            .post-item  {
-            .page-with-img {
-                padding-right: 0;
-             }
+            .post-item {
+                .page-with-img {
+                    padding-right: 0;
+                }
             }
+
             .thumbnail-img-wrap {
                 display: none;
             }
-             .pageCount {
-                display none
+
+            .pageCount {
+                display: none;
             }
+
             .pageReadingTime {
-                display none
+                display: none;
             }
         }
-        
     }
 }
- 
-    
 </style>
 
 
