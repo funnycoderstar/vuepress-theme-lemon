@@ -19,17 +19,17 @@ export default {
             this.window = window;
             window.AV = require("leancloud-storage");
         }
-
+        const {appId, appKey, notify, verify, visitor, avatar, placeholder} = this.$themeConfig.valine;
         new Valine({
             el: "#vcomments",
-            appId: "nafsOjKsupw2WaoYYfMKGfpk-gzGzoHsz",
-            appKey: "E9brQ6aYGz9rkmgiiC0hyfSG",
-            notify: false,
-            verify: false,
+            appId,
+            appKey,
+            notify,
+            verify,
             path: window.location.pathname,
-            visitor: true,
-            avatar: "wavatar",
-            placeholder: "添加评论",
+            visitor,
+            avatar,
+            placeholder,
         });
     },
 };

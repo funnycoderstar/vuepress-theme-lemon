@@ -13,13 +13,14 @@ export default {
     },
     computed: {
         options() {
+            const {locale, owner, repo, clientId, clientSecret} = this.$themeConfig.vssue;
             return {
                 api: GithubV3,
-                locale: 'zh',
-                owner: 'funnycoderstar',
-                repo: 'gitment-blog',
-                clientId: 'f1898d8e3b95cd8b8131',
-                clientSecret: 'c19e60db0e8b085f5d15130b254f07089437467d',
+                locale,
+                owner,
+                repo,
+                clientId,
+                clientSecret,
             }
       }
     }
