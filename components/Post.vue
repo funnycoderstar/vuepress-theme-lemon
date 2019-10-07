@@ -1,5 +1,5 @@
 <template>
-    <div class="post-container content-wraper">
+    <div class="post-container">
         <div class="post-block">
             <div
                 v-for="(article, index) in articlesList"
@@ -16,6 +16,7 @@
                     </div>
                     <BlogMeta
                         :tags="article.tags"
+                        :title="article.title"
                         :time="article.time"
                         :textCount="article.textCount"
                         :readingTime="article.readingTime"
@@ -143,10 +144,6 @@ export default {
 
 <style lang="stylus">
 .post-container {
-    padding: $navbarHeight 2rem 0;
-    margin: 0px auto;
-    display: block;
-
     .post-block {
         cursor: pointer;
         color: $textColor;

@@ -27,7 +27,8 @@
         slot="bottom"
       />
     </Sidebar>
-    <Post v-if="shouldShowPost"/>
+    <Home v-if="shouldShowPost"/>
+    
     <Archives v-if="shouldShowArchives"/>
     <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
     <Tags v-if="shouldShowTags"/>
@@ -59,14 +60,15 @@ import Sidebar from '@theme/components/Sidebar.vue'
 import Archives from '@theme/components/Archives.vue'
 import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
-import Post from '@theme/components/Post.vue'
+import Home from '@theme/components/Home.vue'
 import TagsPost from '@theme/components/TagsPost.vue'
-import { resolveSidebarItems } from '../util'
-import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components'
+
+import { resolveSidebarItems } from '../util';
+import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components';
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
-  components: { Page, Sidebar, Navbar, Archives, Tags, Footer, Post, TagsPost},
+  components: { Page, Sidebar, Navbar, Archives, Tags, Footer, Home, TagsPost},
 
   data () {
     return {
@@ -195,6 +197,12 @@ export default {
   },
   created() {
     this.paginationComponent = this.getPaginationComponent()
+    window.AV = require("leancloud-storage");
+    const { appId, appKey } = this.$themeConfig.valine;
+    AV.init({
+        appId,
+        appKey,
+    });
   },
   mounted () {
     this.$router.afterEach(() => {

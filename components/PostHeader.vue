@@ -5,6 +5,7 @@
         </h1>
         <div class="post-content">
             <BlogMeta
+                :title="$page.title"
                 :tags="tags"
                 :time="time"
                 :textCount="$page.textCount"

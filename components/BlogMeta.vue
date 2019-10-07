@@ -3,7 +3,7 @@
         <BlogTag :tags="tags"></BlogTag>
         <span
             class="meta-read meta leancloud-visitors"
-            :data-flag-title="$page.title"
+            :data-flag-title="title"
         >
             <i class="iconfont iconyanjing"></i>
             <i class="leancloud-visitors-count">{{counter ? counter : ''}}</i>
@@ -30,6 +30,7 @@ export default {
         time: {},
         textCount: {},
         readingTime: {},
+        title: {},
         /**
          * 首页阅读数通过 props 获取
          * 文章页阅读数是 Valion 动态修改 dom
