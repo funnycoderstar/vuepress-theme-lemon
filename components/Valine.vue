@@ -1,7 +1,5 @@
 <template>
-    <section
-        style="border-top: 2px solid #eaecef;padding-top:1rem;margin-top:2rem;"
-    >
+    <section class="comments-wrap">
         <h3>
             <a href="javascript:;"></a>
             评 论：
@@ -17,8 +15,7 @@ export default {
     name: "Valine",
     mounted: function() {
         if (typeof window !== "undefined") {
-            document.getElementsByClassName("leancloud-visitors")[0].id =
-                window.location.pathname;
+            document.getElementsByClassName("leancloud-visitors")[0].id = window.location.pathname;
             this.window = window;
             window.AV = require("leancloud-storage");
         }
@@ -31,9 +28,29 @@ export default {
             verify: false,
             path: window.location.pathname,
             visitor: true,
-            avatar: "mm",
+            avatar: "wavatar",
             placeholder: "添加评论",
         });
     },
 };
 </script>
+
+<style lang="stylus">
+    .comments-wrap {
+        border-top: 1px solid #eaecef;
+        margin: 2rem 2.5rem;
+        .v .vwrap .vheader .vinput:focus {
+            border-bottom-color: $accentColor;
+        }
+        .v .vlist .vcard .vh .vmeta .vat  {
+            color: $accentColor;
+        }
+        .info {
+            display: none;
+        }
+        .v .vlist .vcard .vhead .vnick:hover {
+            color: $accentColor;
+        }
+    }
+</style>
+
