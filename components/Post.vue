@@ -32,15 +32,14 @@
             <component :is="paginationComponent"></component>
         </div>
     </div>
-    
 </template>
 
 <script>
-import dayjs from "dayjs";
-import BlogMeta from "./BlogMeta.vue";
+import dayjs from 'dayjs';
+import BlogMeta from './BlogMeta.vue';
 import { Pagination, SimplePagination } from '@vuepress/plugin-blog/lib/client/components';
 export default {
-    name: "Post",
+    name: 'Post',
     components: {
         BlogMeta,
     },
@@ -48,59 +47,35 @@ export default {
         return {
             // 文章访问量, Map结构
             countersMap: {},
-            paginationComponent: null
+            paginationComponent: null,
         };
     },
     async created() {
-        this.paginationComponent = this.getPaginationComponent()
-        // 去 learncloud 取数据
-        const query = decodeURIComponent(
-            JSON.stringify({
-                url: {
-                    $in: this.articlesList.map(article => article.link),
-                },
-            }),
-        );
-        const res = await fetch(
-            `https://avoscloud.com/1.1/classes/Counter?where=${query}`,
-            {
-                credentials: "omit",
-                headers: {
-                    "content-type": "application/json;charset=UTF-8",
-                    "sec-fetch-mode": "cors",
-                    "x-lc-id": "nafsOjKsupw2WaoYYfMKGfpk-gzGzoHsz",
-                    "x-lc-sign":
-                        "42342e3bbc2c97b0ed0059b4cb85283c,1570450414790",
-                    "x-lc-ua": "LeanCloud-JS-SDK/3.15.0 (Browser)",
-                },
-                referrer:
-                    "http://0.0.0.0:8081/_posts/vuepress-theme-lemon.html",
-                referrerPolicy: "no-referrer-when-downgrade",
-                body: null,
-                method: "GET",
-                mode: "cors",
-            },
-        );
+        this.paginationComponent = this.getPaginationComponent();
+
         /**
-         * 成功, 转成方便用的Map结构数据
-         * 失败, log提示
+         * 查询当前页文章的阅读量
          */
-        if (res.status === 200) {
-            const data = await res.json();
-            this.countersMap = data.results.reduce((r, article) => {
-                const {url, time} = article;
+
+        // 当前页文章url列表
+        const articleUrlList = this.articlesList.map((article) => article.link);
+        const query = new AV.Query('Counter');
+        try {
+            // containedIn: $in 查询
+            const data = await query.containedIn('url', articleUrlList).find();
+            // 转 map 结构, url: 阅读量
+            this.countersMap = data.reduce((r, article) => {
+                const { url, time } = article.attributes;
                 r[url] = time;
                 return r;
-            }, {})
-        } else {
-            console.warn("获取访问量失败");
+            }, {});
+        } catch (err) {
+            console.warn('获取访问量失败', err);
         }
     },
     computed: {
         articlesList() {
-            const result = this.$pagination.pages.filter(
-                item => item.pid === "post",
-            );
+            const result = this.$pagination.pages.filter((item) => item.pid === 'post');
             let arr = [];
             for (let i = 0; i < result.length; i++) {
                 if (result[i].title) {
@@ -111,9 +86,9 @@ export default {
                     const item = {
                         title: result[i].title,
                         link: result[i].regularPath,
-                        thumbnailLink: result[i].thumbnailLink || "",
+                        thumbnailLink: result[i].thumbnailLink || '',
                         abstract: result[i].summary,
-                        time: dayjs(updataTime).format("YYYY.MM.DD"),
+                        time: dayjs(updataTime).format('YYYY.MM.DD'),
                         tags: result[i].frontmatter.tags
                             ? Array.isArray(result[i].frontmatter.tags)
                                 ? result[i].frontmatter.tags
@@ -122,9 +97,7 @@ export default {
                         readCount: 100,
                         imgLoad: true,
                         textCount:
-                            Number(textCount) > 1000
-                                ? Number(textCount) / 100 + "k"
-                                : textCount,
+                            Number(textCount) > 1000 ? Number(textCount) / 100 + 'k' : textCount,
                         readingTime,
                     };
                     arr.push(item);
@@ -148,14 +121,14 @@ export default {
         getPaginationComponent() {
             const n = THEME_BLOG_PAGINATION_COMPONENT;
             if (n === 'Pagination') {
-            return Pagination
+                return Pagination;
             }
 
             if (n === 'SimplePagination') {
-            return SimplePagination
+                return SimplePagination;
             }
 
-            return Vue.component(n) || Pagination
+            return Vue.component(n) || Pagination;
         },
     },
 };
@@ -164,7 +137,8 @@ export default {
 <style lang="stylus">
 .post-container {
     flex: 1;
-    position relative
+    position: relative;
+
     .post-block {
         cursor: pointer;
         color: $textColor;
@@ -240,10 +214,11 @@ export default {
             }
         }
     }
+
     .pagination-wrap {
-        text-align center
+        text-align: center;
         bottom: 0;
-         position absolute;
+        position: absolute;
     }
 }
 

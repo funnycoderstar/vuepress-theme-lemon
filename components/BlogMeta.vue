@@ -6,7 +6,7 @@
             :data-flag-title="title"
         >
             <i class="iconfont iconyanjing"></i>
-            <i class="leancloud-visitors-count">{{counter ? counter : ''}}</i>
+            <i class="leancloud-visitors-count">{{counter}}</i>
         </span>
         <span class="meta-time meta">
             <i class="iconfont iconriqi"></i>
