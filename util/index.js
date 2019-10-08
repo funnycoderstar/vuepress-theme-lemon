@@ -207,7 +207,15 @@ export function resolveMatchingConfig (regularPath, config) {
   }
   return {}
 }
-
+export function debounce(fn, delay) {
+  let timer = null;
+  return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+          fn.apply(this, arguments);
+      }, delay)
+  }
+}
 function ensureEndingSlash (path) {
   return /(\.html|\/)$/.test(path)
     ? path

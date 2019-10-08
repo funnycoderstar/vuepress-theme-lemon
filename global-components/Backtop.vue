@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { debounce } from '../util';
 export default {
     props: {
         threshold: {
@@ -21,9 +22,9 @@ export default {
     },
     mounted() {
         this.scrollTop = this.getScrollTop()
-        window.addEventListener('scroll',() => {
+        window.addEventListener('scroll', debounce(() => {
             this.scrollTop = this.getScrollTop();
-        })
+        }, 100))
     },
     methods: {
         getScrollTop () {
