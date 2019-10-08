@@ -36,7 +36,8 @@ export default {
         padding-right: 2rem;
         max-width: 960px;
         .home-sidebar {
-            width: 30rem;
+            min-width: 20rem;
+            max-width: 30rem;
             margin-left: 2rem;
         }
     }

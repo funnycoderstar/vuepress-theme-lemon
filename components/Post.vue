@@ -163,6 +163,7 @@ export default {
 
 <style lang="stylus">
 .post-container {
+    flex: 1;
     position relative
     .post-block {
         cursor: pointer;
