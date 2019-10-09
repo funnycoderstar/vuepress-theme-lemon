@@ -9,28 +9,29 @@
 </template>
 
 <script>
-import Valine from 'valine';
 
 export default {
     name: "Valine",
     mounted: function() {
-        if (typeof window !== "undefined") {
-            document.getElementsByClassName("leancloud-visitors")[0].id = window.location.pathname;
-            this.window = window;
-            window.AV = require("leancloud-storage");
-        }
-        const {appId, appKey, notify, verify, visitor, avatar, placeholder} = this.$themeConfig.valine;
-        new Valine({
-            el: "#vcomments",
-            appId,
-            appKey,
-            notify,
-            verify,
-            path: window.location.pathname,
-            visitor,
-            avatar,
-            placeholder,
-        });
+        import('valine').then((valine) => {
+            if (typeof window !== "undefined") {
+                document.getElementsByClassName("leancloud-visitors")[0].id = window.location.pathname;
+                this.window = window;
+                window.AV = require("leancloud-storage");
+            }
+            const {appId, appKey, notify, verify, visitor, avatar, placeholder} = this.$themeConfig.valine;
+            new Valine({
+                el: "#vcomments",
+                appId,
+                appKey,
+                notify,
+                verify,
+                path: window.location.pathname,
+                visitor,
+                avatar,
+                placeholder,
+            });
+        })
     },
 };
 </script>

@@ -28,7 +28,6 @@
       />
     </Sidebar>
     <Home v-if="shouldShowPost"/>
-    
     <Archives v-if="shouldShowArchives"/>
     <TagsPost v-if="shouldShowTagPost && !shouldShowTags"/>
     <Tags v-if="shouldShowTags"/>
@@ -59,11 +58,13 @@ import Tags from '@theme/components/Tags.vue'
 import Footer from '@theme/components/Footer.vue'
 import Home from '@theme/components/Home.vue'
 import TagsPost from '@theme/components/TagsPost.vue'
+
+
 import { resolveSidebarItems } from '../util';
 import Vue from 'vue'
 import dayjs  from 'dayjs';
 export default {
-  components: { Page, Sidebar, Navbar, Archives, Tags, Footer, Home, TagsPost},
+  components: { Page, Sidebar, Navbar, Archives, Tags, Footer, Home, TagsPost,},
 
   data () {
     return {
@@ -189,15 +190,13 @@ export default {
       return this.$page.pid && this.$page.pid === 'post'
     },
   },
-  created() {
+  mounted () {
     window.AV = require("leancloud-storage");
     const { appId, appKey } = this.$themeConfig.valine;
     AV.init({
         appId,
         appKey,
     });
-  },
-  mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
     })
