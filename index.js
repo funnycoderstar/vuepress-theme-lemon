@@ -16,7 +16,8 @@ module.exports = (themeConfig, ctx) => {
                 id: "post",
                 dirname: "_posts",
                 path: "/",
-                itemPermalink: '/:regular',
+                // itemPermalink: '/:regular',
+                itemPermalink: '/:year/:month/:day/:slug',
                 pagination: {
                     lengthPerPage: 5,
                 },
