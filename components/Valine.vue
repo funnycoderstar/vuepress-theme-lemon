@@ -20,6 +20,7 @@ export default {
                 window.AV = require("leancloud-storage");
             }
             const {appId, appKey, notify, verify, visitor, avatar, placeholder} = this.$themeConfig.valine;
+            const Valine = valine.default;
             new Valine({
                 el: "#vcomments",
                 appId,
