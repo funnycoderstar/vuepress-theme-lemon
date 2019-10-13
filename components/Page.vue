@@ -7,6 +7,7 @@
       <Valine v-if="shouldShowPostContent"></Valine>
       <!-- <MyVssue  v-if="shouldShowPostContent"/> -->
     <slot name="bottom" />
+    <!-- <Toc></Toc> -->
   </main>
 </template>
 
@@ -15,9 +16,10 @@ import PageNav from '@theme/components/PageNav.vue'
 import MyVssue from '@theme/components/MyVssue.vue'
 import PostHeader from '@theme/components/PostHeader.vue'
 import Valine from '@theme/components/Valine.vue';
+import Toc from '@theme/components/Toc.vue';
 
 export default {
-  components: { PageNav, MyVssue, PostHeader, Valine },
+  components: { PageNav, MyVssue, PostHeader, Valine, Toc },
   props: ['sidebarItems'],
   computed: {
     shouldShowPostContent() {
