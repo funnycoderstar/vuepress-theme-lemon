@@ -7,7 +7,7 @@
       <Valine v-if="shouldShowPostContent"></Valine>
       <!-- <MyVssue  v-if="shouldShowPostContent"/> -->
     <slot name="bottom" />
-    <!-- <Toc></Toc> -->
+    <Toc></Toc> 
   </main>
 </template>
 
