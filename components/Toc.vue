@@ -8,7 +8,7 @@
       >
         <router-link
           :to="`#${item.id}`"
-          :style="{ marginLeft: item.nodeName.substring(1) * 12 + 'px' }"
+          :style="{ marginLeft: item.nodeName.substring(1) * 1.2 + 'em' }"
         >{{item.textContent.substring(2)}}</router-link>
       </li>
     </ul>
@@ -28,18 +28,17 @@ export default {
     },
     mounted() {
         this.getAllHeaders();
-        // const index = this.allHeaders.findIndex(
-        //     (item) => item.id === decodeURIComponent(this.$route.hash).substring(1),
-        // );
-        // const doc = document.querySelector(decodeURIComponent(this.$route.hash));
-        // setTimeout(() => {
-        //     doc.scrollIntoView();
-        // }, 100);
-        // console.log(index);
-        // this.currentIndex = index;
-        // window.addEventListener('load', () => {
-        //     doc.scrollIntoView();
-        // });
+        const hash = decodeURIComponent(this.$route.hash);
+        if (hash) {
+            const index = this.allHeaders.findIndex(
+                (item) => item.id === decodeURIComponent(this.$route.hash).substring(1),
+            );
+            const currentHeader = document.querySelector(decodeURIComponent(this.$route.hash));
+            setTimeout(() => {
+                currentHeader.scrollIntoView();
+            }, 1000);
+            this.currentIndex = index;
+        }
         window.addEventListener(
             'scroll',
             debounce(() => {
@@ -48,6 +47,7 @@ export default {
             20,
         );
     },
+
     methods: {
         getScrollTop() {
             return (
@@ -79,29 +79,27 @@ export default {
                 }
             }
         },
-    },
-    watch: {
-        $route(to, from) {
-            setTimeout(() => {
-                this.getAllHeaders();
-                this.getCurrentIndex();
-            }, 20);
+        beforeDestroy() {
+            window.removeEventListener('scroll', this.getCurrentIndex);
         },
-        deep: true,
     },
 };
 </script>
 
 <style lang="stylus">
 .Toc-wrap {
-  width: 14rem;
+  max-width: 20rem;
   position: fixed;
   right: 2rem;
   top: $navbarHeight;
-  border-left: 1px solid $borderColor;
+  font-size: 13px;
 
   li {
     list-style: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 2px solid $borderColor;
 
     a {
       color: $textColor;
@@ -113,6 +111,8 @@ export default {
     a {
       color: $accentColor;
     }
+
+    border-color: $accentColor;
   }
 }
 </style>
