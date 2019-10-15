@@ -215,7 +215,7 @@ export default {
 
   .pagination-wrap {
     text-align: center;
-    bottom: 0;
+    bottom: -4.3rem;
     position: absolute;
   }
 }
