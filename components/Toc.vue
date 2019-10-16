@@ -52,8 +52,7 @@ export default {
             'scroll',
             debounce(() => {
                 this.getCurrentIndex();
-            }),
-            20,
+            }, 20),
         );
     },
 
