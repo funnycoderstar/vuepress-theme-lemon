@@ -1,18 +1,19 @@
 <template>
-  <div class="Toc-wrap">
-    <ul>
-      <li
-        v-for="(item, index) in allHeaders"
-        :key="index"
-        :class="{ active: currentIndex === index}"
-      >
-        <router-link
-          :to="`#${item.id}`"
-          :style="{ marginLeft: item.nodeName.substring(1) * 1.2 + 'em' }"
-        >{{item.textContent.substring(2)}}</router-link>
-      </li>
-    </ul>
-  </div>
+    <div class="Toc-wrap">
+        <ul>
+            <li
+                v-for="(item, index) in allHeaders"
+                :key="index"
+                :class="{ active: currentIndex === index }"
+            >
+                <router-link
+                    :to="`#${item.id}`"
+                    :style="{ marginLeft: item.nodeName.substring(1) * 1.2 + 'em' }"
+                    >{{ item.textContent.substring(2) }}</router-link
+                >
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -33,11 +34,19 @@ export default {
             const index = this.allHeaders.findIndex(
                 (item) => item.id === decodeURIComponent(this.$route.hash).substring(1),
             );
-            const currentHeader = document.querySelector(decodeURIComponent(this.$route.hash));
-            setTimeout(() => {
-                currentHeader.scrollIntoView();
-            }, 1000);
             this.currentIndex = index;
+
+            const currentHeader = document.querySelector(decodeURIComponent(this.$route.hash));
+            function doScroll() {
+                setTimeout(() => {
+                    currentHeader.scrollIntoView();
+                });
+            }
+            if (document.readyState === 'complete') {
+                doScroll();
+            } else {
+                window.addEventListener('load', doScroll);
+            }
         }
         window.addEventListener(
             'scroll',
@@ -116,5 +125,3 @@ export default {
   }
 }
 </style>
-
-
