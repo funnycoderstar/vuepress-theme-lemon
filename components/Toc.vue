@@ -123,4 +123,8 @@ export default {
     border-color: $accentColor;
   }
 }
+@media (max-width: $MQMobile)
+  .Toc-wrap
+    display: none;
+   
 </style>
