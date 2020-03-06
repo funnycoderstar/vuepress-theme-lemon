@@ -9,7 +9,7 @@ npm i -D vuepress-theme-lemon
 ```js
 $ npm i -g miko-cli
 $ miko-cli create myBlog vuepress-lemon
-$ cd muBlog
+$ cd myBlog
 $ npm run dev
 ```
 
