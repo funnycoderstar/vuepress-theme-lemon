@@ -8,8 +8,15 @@ npm i -D vuepress-theme-lemon
 # 快速生成模板文件
 ```js
 $ npm i -g miko-cli
-$ miko-cli create myBlog vuepress-lemon
-$ cd myBlog
+$ miko-cli create myblog vuepress-lemon
+$ cd myblog
+$ npm run dev
+```
+或者直接使用 npx
+
+```js
+$ npx miko-cli create myblog vuepress-lemon
+$ cd myblog
 $ npm run dev
 ```
 
@@ -25,8 +32,9 @@ $ npm run dev
 
 ## 1.1.0
 - [X] 文章的字数显示和阅读时长
+- [X] 热门文章
 - [ ] 留言板功能
-- [ ] 热门文章
+
 
 
 
